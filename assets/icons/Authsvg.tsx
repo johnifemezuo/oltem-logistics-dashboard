@@ -2,7 +2,7 @@ import React from "react";
 
 function Authsvg() {
   return (
-    <div className="absolute bottom-0 left-0">
+    <div className=" absolute bottom-0 left-0 ">
       <svg
         width="489"
         height="242"

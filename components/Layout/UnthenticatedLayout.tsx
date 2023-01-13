@@ -1,6 +1,5 @@
 import { FC, ReactNode } from "react";
 import Authsvg from "../../assets/icons/Authsvg";
-import { AuthLayoutOutlet } from "../../styles/styles";
 import Logo from "../Logo";
 
 interface IUnAuthenticatedLayout {
