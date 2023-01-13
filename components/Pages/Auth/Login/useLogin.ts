@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import {
@@ -16,16 +16,22 @@ export const createCategoryValidatorSchema: ValidationSchema = yup.object({
 
 export const useLogin = () => {
   const resolver = useYupValidationResolver(loginValidator);
+  const [serverError, setServerError] = useState<string>("");
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     ...formOptions
   } = useForm<ILogin>({
     resolver,
   });
+
+  const isTouched = (name: keyof typeof dirtyFields) => {
+    return dirtyFields[name] as boolean;
+  };
+
   const { setToken, loginUser } = useAuth();
-  const { post, data } = usePostRequest<ILoginData>({
+  const { post, data, error, ...postQuery } = usePostRequest<ILoginData>({
     path: "/accounts/auth/login",
   });
 
@@ -39,9 +45,21 @@ export const useLogin = () => {
   }, [data]);
 
   const handleLogin = (data: ILogin) => {
-    post(data);
+    post(data, {
+      onError: (errorData) => {
+        setServerError(errorData.message);
+      },
+    });
   };
   const login = handleSubmit(handleLogin as SubmitHandler<FieldValues>);
 
-  return { errors, login, register, ...formOptions };
+  return {
+    errors,
+    serverError,
+    login,
+    register,
+    isTouched,
+    ...formOptions,
+    ...postQuery,
+  };
 };

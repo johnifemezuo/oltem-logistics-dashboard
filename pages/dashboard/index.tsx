@@ -1,5 +1,3 @@
-import { LoginForm } from "../../components";
-
 export default function LoginPage() {
-  return <LoginForm />;
+  return "welcome to the dashboard";
 }

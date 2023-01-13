@@ -1,5 +1,9 @@
-import { LoginForm } from "../components";
+import { LoginForm, UnAuthenticatedLayout } from "../components";
 
 export default function LoginPage() {
-  return <LoginForm />;
+  return (
+    <UnAuthenticatedLayout>
+      <LoginForm />
+    </UnAuthenticatedLayout>
+  );
 }
