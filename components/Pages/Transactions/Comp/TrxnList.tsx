@@ -1,9 +1,19 @@
+import { useState } from "react";
 import CurrencyFormat from "react-currency-format";
-import { RiArrowRightLine, RiArrowRightSLine, RiSendPlaneFill } from "react-icons/ri";
+import { RiArrowRightSLine, RiSendPlaneFill } from "react-icons/ri";
+import { useTransactionInfoStore } from "../../../../base/hooks/stores/auth/useTransactions";
 import { TxnList } from "./styles";
 
 function TrxnList(data: any) {
   const status = data.data.status;
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  
+  const { setOpenTxnModal, storetransactionDetails }: any = useTransactionInfoStore();
+  
+  const previewTransaction = (data: any) => {
+    setOpenTxnModal(!openModal)
+    storetransactionDetails(data);
+  };
 
   return (
     <TxnList>
@@ -38,7 +48,7 @@ function TrxnList(data: any) {
             <li
               className={`${
                 status === "pending"
-                  ? "text-yellow-500"
+                  ? "text-primary-color"
                   : status === "completed"
                   ? "text-green-600"
                   : "text-red-400"
@@ -53,13 +63,13 @@ function TrxnList(data: any) {
       <h1
         className={`md:text-xl relative space-x-4 flex--items font-medium ${
           status === "pending"
-            ? "text-yellow-500"
+            ? "text-primary-color"
             : status === "completed"
             ? "text-green-600"
             : "text-red-400"
         }`}
       >
-        {status === "pending" ? "+" : status === "completed" ? "-" : null}
+        {status === "completed" ? "+" : status === "failed" ? "-" : null}
         <CurrencyFormat
           value={data.data.amount}
           displayType={"text"}
@@ -68,7 +78,12 @@ function TrxnList(data: any) {
           prefix="$"
         />
 
-        <span className="text-zinc-600 text-3xl cursor-pointer rounded-md transition hover:bg-app-bg  "><RiArrowRightSLine /></span>
+        <span
+          onClick={() => previewTransaction(data)}
+          className="text-zinc-600 text-3xl cursor-pointer rounded-md transition hover:bg-app-bg  "
+        >
+          <RiArrowRightSLine />
+        </span>
       </h1>
     </TxnList>
   );
