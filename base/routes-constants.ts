@@ -2,6 +2,6 @@ export const Routes = {
   // Auth routes
   Login: "/auth/login",
   dashboard: "/dashboard",
-  transactions: "/transactions",
-  users: "/users",
+  transactions: "/dashboard/transactions",
+  users: "/dashboard/users",
 };

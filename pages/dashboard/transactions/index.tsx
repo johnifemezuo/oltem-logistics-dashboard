@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { TransactionsPage } from "../../components/Pages/Transactions";
+import { TransactionsPage } from "../../../components";
 
 export default function TransactionPage() {
   return (
@@ -9,7 +9,9 @@ export default function TransactionPage() {
         <title>Transactions</title>
       </Head>
 
-      <div><TransactionsPage/ ></div>
+      <div>
+        <TransactionsPage />
+      </div>
     </>
   );
 }
