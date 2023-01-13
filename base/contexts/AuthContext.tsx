@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
+import { DashboardLayout } from "../../components";
 import { useAuth } from "../hooks";
 import { IAuthLayoutContext } from "./contexts.interface";
 
@@ -14,13 +15,13 @@ export function AuthContext({ children }: { children: ReactNode }) {
     authToken,
     logout,
   } = useAuth();
-  const [timeStamp,] = useState<Date>(new Date());
+  const [timeStamp] = useState<Date>(new Date());
 
   useEffect(() => {
+    console.log({ route, authToken, user });
     // check if route is dashboard
     if (route.startsWith("/dashboard")) {
       if (!authToken || !user) {
-        logout();
         push("/");
       }
     } else if (authToken && user && route === "/") {
@@ -41,7 +42,11 @@ export function AuthContext({ children }: { children: ReactNode }) {
 
   return (
     <AuthLayoutContext.Provider value={contextOptions}>
-      {children}
+      {route.startsWith("/dashboard") ? (
+        <DashboardLayout>{children}</DashboardLayout>
+      ) : (
+        children
+      )}
     </AuthLayoutContext.Provider>
   );
 }

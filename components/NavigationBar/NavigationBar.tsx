@@ -1,15 +1,16 @@
 import { useRouter } from "next/router";
-import { RiExchangeDollarFill, RiLogoutCircleLine } from "react-icons/ri";
+import { RiLogoutCircleLine } from "react-icons/ri";
 import { MenuList } from "../../base/MenuList";
 import { Logo } from "../Logo";
 import Navlink from "./Navlink";
-import NavlinkDropdown from "./Navlink/NavlinkDropdown/NavlinkDropdown";
 
 export function NavigationBar() {
   const { route } = useRouter();
 
   const addActiveClass = (path: string) => {
-    return route === path ? "bg-link-active text-primary-color" : "bg-transparent text-zinc-500";
+    return route === path
+      ? "bg-link-active text-primary-color"
+      : "bg-transparent text-zinc-500";
   };
 
   return (
@@ -39,4 +40,3 @@ export function NavigationBar() {
     </div>
   );
 }
-

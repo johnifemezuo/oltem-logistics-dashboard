@@ -1,6 +1,6 @@
-import { yupInstance } from "../../../../base";
+import * as yup from "yup";
 
-export const loginValidator = yupInstance.object({
-  email: yupInstance.string().email().required("Email is required"),
-  password: yupInstance.string().required("Password is required"),
+export const loginValidator = yup.object({
+  email: yup.string().email().required("Email is required"),
+  password: yup.string().required("Password is required"),
 });

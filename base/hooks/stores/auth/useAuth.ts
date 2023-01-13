@@ -40,9 +40,9 @@ export const useAuth = create<IAuth>((set) => ({
   },
 
   logout: () => {
-    removeCookies("authToken");
-    removeCookies("session");
-    return set(() => ({ authToken: undefined, session: undefined }));
+    // removeCookies("authToken");
+    // removeCookies("session");
+    // return set(() => ({ authToken: undefined, session: undefined }));
   },
 
   setToken: (authToken: string | undefined) => {
