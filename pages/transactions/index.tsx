@@ -9,7 +9,7 @@ export default function TransactionPage() {
         <title>Transactions</title>
       </Head>
 
-      <div><TransactionsPage/></div>
+      <div><TransactionsPage/ ></div>
     </>
   );
 }
