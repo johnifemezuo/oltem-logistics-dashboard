@@ -1,4 +1,4 @@
-function InputLabel({ label }: any) {
+export function InputLabel({ label }: any) {
   return (
     <label
       className="after:content-['*'] 
@@ -11,4 +11,4 @@ function InputLabel({ label }: any) {
   );
 }
 
-export default InputLabel;
+

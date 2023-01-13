@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from "../../../../assets/icons/Loader";
+import { Loader } from "../../../../assets";
 
 interface ICustomButton {
   type?: "submit" | "button" | "reset";
@@ -9,42 +9,40 @@ interface ICustomButton {
   width?: number;
   onClick?: (val?: any) => any;
   isLoading?: boolean;
-  customStyles?: string;
+  className?: string;
   icon?: React.ReactNode;
 }
 
-function CustomButton({
+export function CustomButton({
   type = "submit",
   children,
   disabled,
   isLoading,
-  customStyles,
+  className,
   onClick,
   icon,
 }: ICustomButton) {
   return (
     <button
-      type={type}
+      type={type ?? "submit"}
       disabled={disabled}
       className={` text-white relative font-medium rounded-md  px-4 py-3.5 transition flex--items space-x-8 place-content-center focus:outline-none ${
         disabled
           ? "button-styles-disabled"
           : "bg-primary-color hover:bg-primaryHover-color"
-      } ${customStyles}`}
-      onClick={onClick}
+      } ${className}`}
+      onClick={(e) => {
+        onClick && onClick(e);
+      }}
     >
       <>{children}</>
-      <span>
+      <span className="w-6 h-6 absolute right-0 mr-3">
         {icon ? (
           icon
         ) : (
-          <span className="absolute right-0 top-3.5 bottom0">
-            {isLoading && <Loader />}
-          </span>
+          <span className="">{isLoading ? <Loader /> : null}</span>
         )}
       </span>
     </button>
   );
 }
-
-export default CustomButton;

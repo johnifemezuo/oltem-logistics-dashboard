@@ -1,12 +1,12 @@
 import { FC, ReactNode } from "react";
-import Authsvg from "../../assets/icons/Authsvg";
-import Logo from "../Logo";
+import { Authsvg } from "../../assets";
+import { Logo } from "../Logo";
 
 interface IUnAuthenticatedLayout {
   children: ReactNode;
 }
 
-const UnAuthenticatedLayout: FC<IUnAuthenticatedLayout> = ({ children }) => {
+export const UnAuthenticatedLayout: FC<IUnAuthenticatedLayout> = ({ children }) => {
   return (
     <div
       className=" grid md:flex 
@@ -32,7 +32,9 @@ const UnAuthenticatedLayout: FC<IUnAuthenticatedLayout> = ({ children }) => {
           Admin Portal
         </div>
 
-        <Authsvg />
+        <div className=" absolute bottom-0 left-0 ">
+          <Authsvg />
+        </div>
       </div>
 
       <div
@@ -46,5 +48,3 @@ const UnAuthenticatedLayout: FC<IUnAuthenticatedLayout> = ({ children }) => {
     </div>
   );
 };
-
-export default UnAuthenticatedLayout;

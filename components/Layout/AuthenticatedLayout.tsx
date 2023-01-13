@@ -4,7 +4,7 @@ interface IAuthenticatedLayout {
   children: ReactNode;
 }
 
-const AuthenticatedLayout: FC<IAuthenticatedLayout> = ({ children }) => {
+export const AuthenticatedLayout: FC<IAuthenticatedLayout> = ({ children }) => {
   return (
     <div>
       Authenticated
@@ -13,4 +13,4 @@ const AuthenticatedLayout: FC<IAuthenticatedLayout> = ({ children }) => {
   );
 };
 
-export default AuthenticatedLayout;
+

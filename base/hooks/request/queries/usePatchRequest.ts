@@ -12,7 +12,7 @@ export const usePatchRequest = <TResponse>({
   path: string;
   formData?: boolean;
 }) => {
-  const { token } = useAuth();
+  const { authToken } = useAuth();
   const [resetForm, setResetForm] = useState<boolean>(false);
 
   // register post mutation
@@ -24,7 +24,7 @@ export const usePatchRequest = <TResponse>({
           path: path,
           body: postData,
           method: HttpMethod.PATCH,
-          bearerToken: token,
+          bearerToken: authToken,
           formData,
         });
 

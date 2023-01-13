@@ -1,11 +1,9 @@
-import React from "react";
+// import {ReactComponent as zigahLogo} from "zigahLogo.svg";
 
-function Logo() {
+export function Logo() {
   return (
-    <div className="w-[90px] md:w-[120px] ">
-      <img src="/zigah-logo.png" alt="Zigah logo" />
+    <div className="w-[70px] md:w-[90px] mt-4">
+      <img src="../zigah-logo.png" alt="Zigah logo" />
     </div>
   );
 }
-
-export default Logo;

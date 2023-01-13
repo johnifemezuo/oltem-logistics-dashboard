@@ -13,7 +13,7 @@ import { makeRequest } from "../make-request";
 export const useDeleteRequest = <TResponse>() => {
   const [requestPath, updateDeletePath] = useState<string>("");
   const [options, setOptions] = useState<any>();
-  const { token } = useAuth();
+  const { authToken } = useAuth();
   const query = useQuery<any, any, IRequestSucess<TResponse>>(
     [requestPath, {}],
     () =>
@@ -22,7 +22,7 @@ export const useDeleteRequest = <TResponse>() => {
           setTimeout(async () => {
             const postResponse = await makeRequest<TResponse>({
               path: requestPath,
-              bearerToken: token,
+              bearerToken: authToken,
               method: HttpMethod.DELETE,
             });
             if (postResponse?.status) {

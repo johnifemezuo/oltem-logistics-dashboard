@@ -1,8 +1,6 @@
-import React from "react";
-
-function Authsvg() {
+export function Authsvg() {
   return (
-    <div className=" absolute bottom-0 left-0 ">
+    <>
       <svg
         width="489"
         height="242"
@@ -395,8 +393,6 @@ function Authsvg() {
           fill="#04103D"
         />
       </svg>
-    </div>
+    </>
   );
 }
-
-export default Authsvg;

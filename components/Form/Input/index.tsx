@@ -1,9 +1,7 @@
-import { useField } from "formik";
 import React from "react";
 import { RiInformationFill } from "react-icons/ri";
-import Tick from "../../../assets/icons/Tick";
-import InputLabel from "../../UI/Elements/InputLabel";
-import TickStyle from "../../UI/Elements/TickStyle";
+import { Tick } from "../../../assets";
+import { InputLabel, TickStyle } from "../../UI";
 
 interface ICustomInput {
   type?: string;
@@ -14,23 +12,26 @@ interface ICustomInput {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   lable?: string;
+  register?: any;
   placeholder?: string;
   readOnly?: boolean;
   tick?: boolean;
+  touched: boolean;
+  error: string | undefined;
 }
 
-function CustomInput({
+export function CustomInput({
   lable,
   tick,
   type = "text",
   value,
   placeholder,
   disabled,
-  inputRef,
+  touched,
+  error,
+  register,
   ...props
 }: ICustomInput) {
-  const [field, meta] = useField(props as any);
-
   return (
     <div className="text-left relative w-full">
       <InputLabel label={lable} />
@@ -48,10 +49,12 @@ function CustomInput({
     w-full py-3.5 px-4 transition duration-300
     text-md
       
-    ${disabled === true ? "bg-zinc-100 text-zinc-500" : "bg-white text-zinc-700"}
+    ${
+      disabled === true ? "bg-zinc-100 text-zinc-500" : "bg-white text-zinc-700"
+    }
         
     ${
-      meta.touched && meta.error === "true"
+      touched && error
         ? "focus:ring-danger-color text-danger-color"
         : "focus:ring-primary-color"
     }
@@ -61,8 +64,7 @@ function CustomInput({
           placeholder={placeholder}
           disabled={disabled}
           type={type}
-          ref={inputRef}
-          {...field}
+          {...register}
           {...props}
         />
         {tick ? (
@@ -71,9 +73,9 @@ function CustomInput({
           </TickStyle>
         ) : null}
       </div>
-      {meta.touched && meta.error ? (
+      {touched && error ? (
         <div className="my-1 text-left right-0 text-sm text-danger-color absolute space-x-1 flex--items">
-          <span>{meta.error}</span>.
+          <span>{error}</span>.
           <span>
             <RiInformationFill className="text-base" />
           </span>
@@ -82,5 +84,3 @@ function CustomInput({
     </div>
   );
 }
-
-export default CustomInput;

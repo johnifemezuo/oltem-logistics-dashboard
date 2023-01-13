@@ -1,5 +1,9 @@
-import LoginPage from "./Auth/login";
+import { LoginForm, UnAuthenticatedLayout } from "../components";
 
-export default function Homepage() {
-  return <LoginPage />;
+export default function LoginPage() {
+  return (
+    <UnAuthenticatedLayout>
+      <LoginForm />
+    </UnAuthenticatedLayout>
+  );
 }

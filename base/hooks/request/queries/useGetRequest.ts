@@ -21,7 +21,7 @@ export const useGetRequest = <TResponse extends { pagination?: IPagination }>({
   >;
 }) => {
   const [requestPath, updatePath] = useState<string>(path);
-  const { token } = useAuth();
+  const { authToken } = useAuth();
   const [options, setOptions] = useState<any>(qureyOptions);
 
   const query = useQuery<any, any, IRequestSucess<TResponse>>(
@@ -32,7 +32,7 @@ export const useGetRequest = <TResponse extends { pagination?: IPagination }>({
           setTimeout(async () => {
             const postResponse = await makeRequest<TResponse>({
               path: requestPath,
-              bearerToken: token,
+              bearerToken: authToken,
             });
             if (postResponse?.status) {
               res(postResponse as IRequestSucess<TResponse>);
@@ -53,7 +53,6 @@ export const useGetRequest = <TResponse extends { pagination?: IPagination }>({
       const pagination: IPagination = query.data?.data.pagination;
       if (pagination.next_page === pagination.current_page) {
       } else if (pagination.next_page > pagination.current_page) {
-        console.log({ nextPage: pagination.next_page });
         updatePath(constructPaginationLink(requestPath, pagination.next_page));
       }
     }

@@ -1,4 +1,4 @@
-function TickStyle(children: any) {
+export function TickStyle({ children }: any) {
   return (
     <div
       className="w-[30px] grid place-content-center
@@ -9,5 +9,3 @@ function TickStyle(children: any) {
     </div>
   );
 }
-
-export default TickStyle;

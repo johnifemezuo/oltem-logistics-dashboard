@@ -1,8 +1,7 @@
-import { useField } from "formik";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { RiInformationFill } from "react-icons/ri";
-import InputLabel from "../../UI/Elements/InputLabel";
+import { InputLabel } from "../../UI";
 interface IPasswordInput {
   value?: string;
   disabled?: boolean;
@@ -13,17 +12,22 @@ interface IPasswordInput {
   lable?: string;
   placeholder?: string;
   readOnly?: boolean;
+  touched: boolean;
+  error: string | undefined;
+  register?: any;
 }
 
-function PasswordInput({
+export function PasswordInput({
   lable,
   value,
   placeholder,
   disabled,
   inputRef,
+  touched,
+  error,
+  register,
   ...props
 }: IPasswordInput) {
-  const [field, meta] = useField(props as any);
   const [passwordShow, setPasswordShow] = useState(true);
 
   return (
@@ -43,10 +47,12 @@ function PasswordInput({
     w-full py-3.5 px-4 transition duration-300
     text-md
       
-    ${disabled === true ? "bg-zinc-100 text-zinc-500" : "bg-white text-zinc-700"}
+    ${
+      disabled === true ? "bg-zinc-100 text-zinc-500" : "bg-white text-zinc-700"
+    }
         
     ${
-      meta.touched && meta.error === "true"
+      touched && error
         ? "focus:ring-danger-color text-danger-color"
         : "focus:ring-primary-color"
     }
@@ -56,8 +62,7 @@ function PasswordInput({
           placeholder={placeholder}
           disabled={disabled}
           type={!passwordShow ? "text" : "password"}
-          ref={inputRef}
-          {...field}
+          {...register}
           {...props}
         />
         <div
@@ -71,9 +76,9 @@ function PasswordInput({
           {passwordShow ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
         </div>
       </div>
-      {meta.touched && meta.error ? (
+      {touched && error ? (
         <div className=" my-1 text-left right-0 text-sm text-danger-color absolute space-x-1 flex--items">
-          <span>{meta.error}</span>
+          <span>{error}</span>
           <span>
             <RiInformationFill className="text-base" />
           </span>
@@ -82,5 +87,3 @@ function PasswordInput({
     </div>
   );
 }
-
-export default PasswordInput;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function TermsAndConditions() {
+export function TermsAndConditions() {
   return (
     <p className="text-sm text-left ">
       <span className="text-zinc-500">By submitting, you agree to our</span>
@@ -27,4 +27,3 @@ function TermsAndConditions() {
   );
 }
 
-export default TermsAndConditions;

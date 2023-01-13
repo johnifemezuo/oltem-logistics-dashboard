@@ -1,6 +1,6 @@
 import React from "react";
 
-function Tick() {
+export function Tick() {
   return (
     <>
       <svg
@@ -20,5 +20,3 @@ function Tick() {
     </>
   );
 }
-
-export default Tick;

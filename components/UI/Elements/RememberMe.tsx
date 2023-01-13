@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-function RememberMe() {
+export function RememberMe() {
   return (
     <div className="flex--items text-zinc-500 w-full justify-between">
       <div className="flex items-center">
@@ -22,4 +22,3 @@ function RememberMe() {
   );
 }
 
-export default RememberMe;
