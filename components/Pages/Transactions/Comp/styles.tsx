@@ -1,7 +1,7 @@
 import tw from "tailwind-styled-components";
 
 export const TxnList = tw.li`
-  bg-white px-2 relative py-5 flex--items space-x-5 justify-between
+  bg-white hover:bg-blue-50/30 cursor-pointer px-2 relative py-5 flex--items space-x-5 justify-between
 ` as any;
 
 export const TxnTititleWrap = tw.li`

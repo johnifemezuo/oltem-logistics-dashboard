@@ -7,16 +7,16 @@ import { TxnList } from "./styles";
 function TrxnList(data: any) {
   const status = data.data.status;
   const [openModal, setOpenModal] = useState<boolean>(false);
-  
+
   const { setOpenTxnModal, storetransactionDetails }: any = useTransactionInfoStore();
-  
+
   const previewTransaction = (data: any) => {
-    setOpenTxnModal(!openModal)
+    setOpenTxnModal(!openModal);
     storetransactionDetails(data);
   };
 
   return (
-    <TxnList>
+    <TxnList onClick={() => previewTransaction(data)}>
       <div className="flex--items space-x-6 ">
         <div
           className={`${
@@ -79,8 +79,7 @@ function TrxnList(data: any) {
         />
 
         <span
-          onClick={() => previewTransaction(data)}
-          className="text-zinc-600 text-3xl cursor-pointer rounded-md transition hover:bg-app-bg  "
+          className="text-zinc-600 text-3xl "
         >
           <RiArrowRightSLine />
         </span>

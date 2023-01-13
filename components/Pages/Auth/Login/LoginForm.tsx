@@ -9,7 +9,7 @@ export function LoginForm() {
     useLogin();
 
   return (
-    <div className="w-[550px]  h-auto">
+    <div className="w-[450px]  h-auto">
       <SignUpTitle title="Log in" desc="Welcome back, Sign in" />
 
       <div className=" text-center space-y-4">
@@ -18,7 +18,7 @@ export function LoginForm() {
             <p className="text-red-600 font-bold my-2">{serverError} </p>
           ) : null}
           <CustomInput
-            lable="Your Email"
+            label="Your Email"
             register={register("email")}
             placeholder="example@gmail.com"
             type="email"
@@ -28,7 +28,7 @@ export function LoginForm() {
           />
 
           <PasswordInput
-            lable="Your Password"
+            label="Your Password"
             placeholder="**123Password"
             error={errors.password?.message}
             touched={isTouched("password")}
@@ -47,7 +47,7 @@ export function LoginForm() {
           </CustomButton>
         </form>
 
-        <p className="text-md ">
+        <p className="text-sm ">
           <span className="text-zinc-500 ">Don`t have an account? </span>
           <Link href={""} className=" text-primary-color">
             Create account

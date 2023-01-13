@@ -9,7 +9,7 @@ interface IPasswordInput {
   inputRef?: any;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
-  lable?: string;
+  label?: string;
   placeholder?: string;
   readOnly?: boolean;
   touched: boolean;
@@ -18,7 +18,7 @@ interface IPasswordInput {
 }
 
 export function PasswordInput({
-  lable,
+  label,
   value,
   placeholder,
   disabled,
@@ -32,7 +32,7 @@ export function PasswordInput({
 
   return (
     <div className="text-left relative">
-      <InputLabel label={lable} />
+      <InputLabel label={label} />
       <div
         className="w-full flex bg-white mt-2  
     border rounded-lg
@@ -40,7 +40,7 @@ export function PasswordInput({
       >
         <input
           className={`
-    bg-white rounded-md text-lg 
+    bg-white rounded-md text-base 
     focus:ring-1 shadow-sm border-slate-300 placeholder-slate-400
     placeholder:text-md 
     focus:outline-none 
