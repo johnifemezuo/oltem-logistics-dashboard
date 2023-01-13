@@ -1,7 +1,10 @@
 import { FC, ReactNode } from "react";
 import { getinitials } from "../../base/functions/text-util";
+import { useTransactionInfoStore } from "../../base/hooks/stores/auth/useTransactions";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
+import { TransactionModal } from "../UI/Modal/TransactionModal";
+import TransactionPreviewModal from "../UI/Modal/TransactionPreviewModal";
 import UserProfile from "../UI/UserProfile";
 
 interface IDashboardLayout {
@@ -16,6 +19,8 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
     email: "johnny@gmail.com",
   };
   const data = true;
+
+  const { transactionDetails, openTxnModal }: any = useTransactionInfoStore();
 
   return (
     <div>
@@ -49,6 +54,9 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
           </div>
         </div>
       </div>
+      <TransactionModal open={openTxnModal}>
+        <TransactionPreviewModal data={transactionDetails} />
+      </TransactionModal>
     </div>
   );
 };

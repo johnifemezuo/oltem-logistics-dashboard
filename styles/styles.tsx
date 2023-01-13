@@ -127,3 +127,45 @@ export const ErrorSpan = tw.p`
 export const OtpInputContainer = tw.div`
   border bg-red p-4
 ` as any;
+
+
+
+interface IStep {
+  stepactive: any;
+  filled: any;
+}
+
+export const TrxnContainer = tw.div`
+    max-w-[1250px] h-auto mx-auto my-9 pb-20 flex
+` as any;
+
+export const TrxnInnerContainer = tw.div`
+    text-center mt-12 group group-hover:border group-hover:border-primary-color
+` as any;
+
+export const Stepper = tw.div`
+    grid place-content-center -mt-3  text-primary-color space-y-3
+` as any;
+
+export const StepperWrap = tw.div`
+    flex--items relative mt-6 border-t-4 mb-9 w-auto justify-between
+` as any;
+
+export const Step = tw.div<IStep>`
+    w-5 h-5 grid rounded-full  transition duration-300 z-20 border-4 border-zinc-200  mx-auto  
+    ${(p) => (p.stepactive ? "bg-primary-color" : p.filled ? "bg-success-color" : "bg-zinc-400/70")}
+` as any;
+
+export const StepperTitle = tw.div<IStep>`
+    font-medium transition duration-300
+    ${(p) => (p.stepactive ? "text-primary" : p.filled ? "text-success-color" : "text-zinc-400")}
+
+` as any;
+
+export const FlexContainer = tw.div`
+    flex--items space-x-6 w-full
+` as any;
+
+export const ReviewTxns = tw.div`
+    flex--items justify-between w-full border-b py-4
+` as any;

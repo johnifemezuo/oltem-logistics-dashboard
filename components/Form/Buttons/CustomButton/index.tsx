@@ -11,6 +11,7 @@ interface ICustomButton {
   isLoading?: boolean;
   className?: string;
   icon?: React.ReactNode;
+  bg_color?: string;
 }
 
 export function CustomButton({
@@ -21,15 +22,14 @@ export function CustomButton({
   className,
   onClick,
   icon,
+  bg_color = "bg-primary-color text-white hover:bg-primaryHover-color",
 }: ICustomButton) {
   return (
     <button
       type={type ?? "submit"}
       disabled={disabled}
-      className={` text-white relative font-medium rounded-md  px-4 py-3.5 transition flex--items space-x-8 place-content-center focus:outline-none ${
-        disabled
-          ? "button-styles-disabled"
-          : "bg-primary-color hover:bg-primaryHover-color"
+      className={`  relative font-medium rounded-md text-sm px-4 py-3.5 transition flex--items space-x-8 place-content-center focus:outline-none ${
+        disabled ? "button-styles-disabled " : bg_color
       } ${className}`}
       onClick={(e) => {
         onClick && onClick(e);
@@ -37,11 +37,7 @@ export function CustomButton({
     >
       <>{children}</>
       <span className="w-6 h-6 absolute right-0 mr-3">
-        {icon ? (
-          icon
-        ) : (
-          <span className="">{isLoading ? <Loader /> : null}</span>
-        )}
+        {icon ? icon : <span className="">{isLoading ? <Loader /> : null}</span>}
       </span>
     </button>
   );
