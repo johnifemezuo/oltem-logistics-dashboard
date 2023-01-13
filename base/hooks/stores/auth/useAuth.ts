@@ -2,6 +2,7 @@ import { getCookie, removeCookies, setCookie } from "cookies-next";
 import { create } from "zustand";
 import { ILoginData } from "../../../../components";
 
+const THIRTY_MINUTES_IN_MILLISECONDS = 1800000;
 export interface IAuth {
   session: ILoginData | undefined;
   authToken: string | undefined;
@@ -31,7 +32,8 @@ export const useAuth = create<IAuth>((set) => ({
 
   loginUser: (userData: ILoginData | undefined) => {
     const date = new Date();
-    date.setHours(7); // expire session in 7hrs
+
+    date.setMilliseconds(THIRTY_MINUTES_IN_MILLISECONDS); // expire session in 7hrs
 
     const sessionData = JSON.stringify(userData);
     setCookie("session", sessionData, { expires: date });
@@ -40,14 +42,14 @@ export const useAuth = create<IAuth>((set) => ({
   },
 
   logout: () => {
-    // removeCookies("authToken");
-    // removeCookies("session");
-    // return set(() => ({ authToken: undefined, session: undefined }));
+    removeCookies("authToken");
+    removeCookies("session");
+    return set(() => ({ authToken: undefined, session: undefined }));
   },
 
   setToken: (authToken: string | undefined) => {
     const date = new Date();
-    date.setHours(7); // expire authToken in 7hrs
+    date.setMilliseconds(THIRTY_MINUTES_IN_MILLISECONDS); // expire authToken in 7hrs
 
     setCookie("authToken", JSON.stringify({ authToken }), {
       expires: date,

@@ -1,6 +1,8 @@
 import { TransactionCard } from "../../Card/TransactionCard";
+import { useDashboardTransactions } from "./useDashboardTransactions";
 
 export function DashboardPage() {
+  const {} = useDashboardTransactions()
   return (
     <div className="md:w-[1200px] mx-auto py-16 h-auto w-full">
       <div className="grid grid-cols-4 gap-6">
