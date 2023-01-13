@@ -6,7 +6,7 @@ import { useAuth } from "../../stores";
 import { IRequestError, IRequestSucess } from "../api-request.interface";
 import { makeRequest } from "../make-request";
 
-export const useGetRequest = <TResponse extends { pagination?: IPagination }>({
+export const useGetRequest = <TResponse extends Record<string, any>>({
   path,
   load = false,
   qureyOptions,
