@@ -57,12 +57,12 @@ export const useDashboardTransactions = () => {
   });
 
   const isLoading =
-    tLoading &&
-    inULoading &&
-    sLoading &&
-    pLoading &&
-    aULoading &&
-    userLoading &&
+    tLoading ||
+    inULoading ||
+    sLoading ||
+    pLoading ||
+    aULoading ||
+    userLoading ||
     fLoading;
   return {
     totalTransactions,
