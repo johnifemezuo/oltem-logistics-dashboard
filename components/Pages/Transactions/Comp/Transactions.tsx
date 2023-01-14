@@ -1,9 +1,9 @@
 import TrxnLists from "./TrxnLists";
 import React from "react";
 import { useWalletTransactions } from "./useWalletTransactions";
-import AllTransactions from "./AllTransactions";
+import { AllTransactions } from "./AllTransactions";
 
-export default function Transactions() {
+export function Transactions() {
   const {
     allTransactions,
     status,

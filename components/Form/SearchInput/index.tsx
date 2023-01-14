@@ -9,7 +9,7 @@ interface ISearchInput {
   placeholder?: string;
 }
 
-function SearchInput({
+export function SearchInput({
   setSearch,
   showFilter = true,
   value,
@@ -32,4 +32,3 @@ function SearchInput({
   );
 }
 
-export default SearchInput;

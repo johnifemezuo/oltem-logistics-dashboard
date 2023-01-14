@@ -3,7 +3,7 @@ import { ReviewTxns } from '../../../styles/styles'
 import { CustomButton } from '../../Form';
 import ReviewTxn from '../Elements/ReviewtTxn'
 
-function TransactionPreviewModal({ data }: { data: any }) {
+export function TransactionPreviewModal({ data }: { data: any }) {
   const [isSuccessfull, setIsSuccessful] = useState(false);  
   const [isFailed, setIsFailed] = useState(false);  
   return (
@@ -105,4 +105,3 @@ function TransactionPreviewModal({ data }: { data: any }) {
   );
 }
 
-export default TransactionPreviewModal;

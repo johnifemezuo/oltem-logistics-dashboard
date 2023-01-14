@@ -2,7 +2,7 @@ import React from "react";
 import ContentLoader from "react-content-loader";
 import { TrxnLoading } from "./TrxnLoading";
 
-export default function TxnLoadingSkeleton() {
+export function TxnLoadingSkeleton() {
   return (
     <div className="w-full">
       <ContentLoader

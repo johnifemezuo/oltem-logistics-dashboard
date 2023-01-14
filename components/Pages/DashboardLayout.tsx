@@ -1,10 +1,9 @@
 import { FC, ReactNode } from "react";
-import { getinitials } from "../../base/functions/text-util";
-import { useTransactionInfoStore } from "../../base/hooks/stores/auth/useTransactions";
+import { getinitials, useTransactionInfoStore } from "../../base";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
+import { TransactionPreviewModal } from "../UI/Modal";
 import { TransactionModal } from "../UI/Modal/TransactionModal";
-import TransactionPreviewModal from "../UI/Modal/TransactionPreviewModal";
 import UserProfile from "../UI/UserProfile";
 
 interface IDashboardLayout {

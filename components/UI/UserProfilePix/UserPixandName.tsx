@@ -4,7 +4,7 @@ interface IUserPixandName {
   name: string;
 }
 
-function UserPixandName({ img, initials, name }: IUserPixandName) {
+export function UserPixandName({ img, initials, name }: IUserPixandName) {
   return (
     <div className="">
       <div className="flex--items space-x-6">
@@ -38,4 +38,3 @@ function UserPixandName({ img, initials, name }: IUserPixandName) {
   );
 }
 
-export default UserPixandName;

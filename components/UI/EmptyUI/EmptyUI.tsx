@@ -1,7 +1,7 @@
 import React from "react";
 import { RiBuildingFill } from "react-icons/ri";
 
-function EmptyUI() {
+export function EmptyUI() {
   return (
     <div className="w-full text-center h-full  grid place-content-center md:py-12">
       <span className="bg-app-bg w-16 h-16 grid place-content-center border rounded-full mx-auto mb-6">
@@ -17,4 +17,3 @@ function EmptyUI() {
   );
 }
 
-export default EmptyUI;

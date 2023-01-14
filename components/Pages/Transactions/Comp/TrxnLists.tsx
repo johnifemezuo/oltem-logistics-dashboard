@@ -7,7 +7,7 @@ function classNames(...classes: string[]) {
 
 function TrxnLists({ categories }: any) {
   return (
-    <div className="w-full mb-20 md:mt-4 border-t px-2 py-6 sm:px-0">
+    <div className="w-full mb-20 md:mt-6  px-2 py-6 sm:px-0">
       <Tab.Group>
         <Tab.List className="flex space-x-1 border p-2 rounded-md bg-white ">
           {Object.keys(categories).map((category) => (

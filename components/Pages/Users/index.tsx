@@ -1,5 +1,5 @@
 import React from "react";
-import SearchInput from "../../Form/SearchInput";
+import { SearchInput } from "../../Form";
 import { UserTableHead } from "../../Table/UsersTable/UserTableHead";
 import { UserTableRow } from "../../Table/UsersTable/UserTableRow";
 
@@ -58,8 +58,8 @@ export function Users() {
             <tbody>
               {userData?.map((user, i) => (
                 <UserTableRow
-                      key={i}
-                      num={i + 1}
+                  key={i}
+                  num={i + 1}
                   customer_name={user.customer_name}
                   email_address={user.email_address}
                   phone_number={user.phone_number}

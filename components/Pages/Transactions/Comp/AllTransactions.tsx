@@ -1,11 +1,12 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import SearchInput from "../../../Form/SearchInput";
-import EmptyUI from "../../../UI/EmptyUI/EmptyUI";
-import TrxnList from "./TrxnList";
-import TxnLoadingSkeleton from "./TxnLoadingSkeleton";
+import { SearchInput } from "../../../Form";
+import { EmptyUI } from "../../../UI";
+import { TrxnList } from "./TrxnList";
+import { TxnLoadingSkeleton } from "./TxnLoadingSkeleton";
 
-function AllTransactions({ transactions }: any) {
+
+export function AllTransactions({ transactions }: any) {
   const paginationBtn =
     "bg-white rounded-md border hover:text-white hover:bg-app-bg hover:text-zinc-500 transition duration-300 text-neutral-600 gap-3 py-2  px-4 text-sm";
 
@@ -61,4 +62,3 @@ function AllTransactions({ transactions }: any) {
   );
 }
 
-export default AllTransactions;

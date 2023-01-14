@@ -9,7 +9,7 @@ interface IModal {
   showCloseButton?: boolean;
 }
 
-function CustomModal({
+export function CustomModal({
   isOpen,
   closeModal,
   children,
@@ -67,4 +67,3 @@ function CustomModal({
   );
 }
 
-export default CustomModal;

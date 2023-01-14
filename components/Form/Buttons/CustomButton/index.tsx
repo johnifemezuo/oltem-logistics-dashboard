@@ -28,7 +28,7 @@ export function CustomButton({
     <button
       type={type ?? "submit"}
       disabled={disabled}
-      className={`  relative font-medium rounded-md text-sm px-5 py-3 transition flex--items space-x-8 place-content-center focus:outline-none ${
+      className={`  relative font-semibold rounded-md text-sm px-5 py-3 transition flex--items space-x-8 place-content-center focus:outline-none ${
         disabled ? "button-styles-disabled " : bg_color
       } ${className}`}
       onClick={(e) => {

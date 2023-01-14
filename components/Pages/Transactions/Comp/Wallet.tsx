@@ -1,10 +1,10 @@
 import { Tab } from "@headlessui/react";
-import TrxnList from "./TrxnList";
-import TxnLoadingSkeleton from "./TxnLoadingSkeleton";
 import React from "react";
-import SearchInput from "../../../Form/SearchInput";
-import EmptyUI from "../../../UI/EmptyUI/EmptyUI";
-import { transactionsData } from "../../../../base/data/txns";
+import { SearchInput } from "../../../Form";
+import { TrxnList } from "./TrxnList";
+import { EmptyUI } from "../../../UI";
+import { TxnLoadingSkeleton } from "./TxnLoadingSkeleton";
+import { transactionsData } from "../../../../base";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -12,8 +12,6 @@ function classNames(...classes: string[]) {
 
 export function Wallet() {
   const categories = ["Debited", "Credited"];
-
-  console.log(transactionsData);
 
   return (
     <div className="w-full mb-20 md:mt-8 border-t px-2 py-6 sm:px-0">

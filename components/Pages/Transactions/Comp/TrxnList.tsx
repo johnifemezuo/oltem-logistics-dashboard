@@ -4,7 +4,7 @@ import { RiArrowRightSLine, RiSendPlaneFill } from "react-icons/ri";
 import { useTransactionInfoStore } from "../../../../base/hooks/stores/auth/useTransactions";
 import { TxnList } from "./styles";
 
-function TrxnList(data: any) {
+export function TrxnList(data: any) {
   const status = data.data.status;
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -88,4 +88,3 @@ function TrxnList(data: any) {
   );
 }
 
-export default TrxnList;

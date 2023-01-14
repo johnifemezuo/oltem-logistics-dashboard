@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { TransactionsPage, Users } from "../../../components";
+import { Users } from "../../../components/Pages/Users";
 
 export default function UsersPage() {
   return (
