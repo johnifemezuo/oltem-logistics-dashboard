@@ -8,7 +8,7 @@ import { localDateFormater, useTransaction } from "../../../../base";
 import { TxnList } from "./styles";
 import { ITransaction } from "./transaction.interface";
 
-function TrxnList({ transaction }: { transaction: ITransaction }) {
+export function TrxnList({ transaction }: { transaction: ITransaction }) {
   const transactionStatus = transaction.transactionStatus;
   const type = transaction.transactionType;
 
@@ -109,4 +109,3 @@ function TrxnList({ transaction }: { transaction: ITransaction }) {
   );
 }
 
-export default TrxnList;

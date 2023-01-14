@@ -1,10 +1,15 @@
-import React from 'react'
-import { UserDetail } from '../../../../components/Pages/Users/UserDetail'
+import Head from "next/head";
+import { UserDetail } from "../../../../components/Pages/Users/UserDetail";
 
-function UserDetailPage() {
+export default function UserDetailPage() {
   return (
-    <UserDetail />
-  )
-}
+    <>
+      <Head>
+        <meta name="Users" content="Transactions History" />
+        <title>Users</title>
+      </Head>
 
-export default UserDetailPage
+      <UserDetail />
+    </>
+  );
+}

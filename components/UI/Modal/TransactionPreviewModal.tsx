@@ -5,7 +5,7 @@ import { CustomButton } from "../../Form";
 import { ITransaction } from "../../Pages/Transactions";
 import ReviewTxn from "../Elements/ReviewtTxn";
 
-function TransactionPreviewModal({
+export function TransactionPreviewModal({
   transaction,
 }: {
   transaction: ITransaction;
@@ -129,4 +129,3 @@ function TransactionPreviewModal({
   );
 }
 
-export default TransactionPreviewModal;

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { RiArrowLeftSLine } from "react-icons/ri";
 
-function BackButton() {
-  const { push } = useRouter();
+export function BackButton() {
+  const {push} = useRouter();
 
   return (
     <button
@@ -15,4 +15,3 @@ function BackButton() {
   );
 }
 
-export default BackButton;

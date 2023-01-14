@@ -1,6 +1,6 @@
 import CurrencyFormat from "react-currency-format";
 
-function BalanceDisplay({ amount }: { amount: any }) {
+export function BalanceDisplay({ amount }: { amount: any }) {
   return (
     <div className="">
       <p className="text-sm text-zinc-600 mb-3 font-medium">
@@ -24,4 +24,3 @@ function BalanceDisplay({ amount }: { amount: any }) {
   );
 }
 
-export default BalanceDisplay;

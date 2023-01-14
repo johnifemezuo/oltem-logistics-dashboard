@@ -1,9 +1,9 @@
 import React from "react";
-import SearchInput from "../../../Form/SearchInput";
-import EmptyUI from "../../../UI/EmptyUI/EmptyUI";
+import { SearchInput } from "../../../Form";
+import { EmptyUI } from "../../../UI";
 import { ITransaction } from "./transaction.interface";
-import TrxnList from "./TrxnList";
-import TxnLoadingSkeleton from "./TxnLoadingSkeleton";
+import { TrxnList } from "./TrxnList";
+import { TxnLoadingSkeleton } from "./TxnLoadingSkeleton";
 
 export function TransactionsList({
   transactions,

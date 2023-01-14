@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import { localCurrencyFormater, useTotalTransactions } from "../../../base";
-import BalanceDisplay from "../../UI/BalanceDisplay";
+import { BalanceDisplay } from "../../UI";
 import Transactions from "./Comp/Transactions";
 
 export function TransactionsPage() {
