@@ -1,7 +1,6 @@
 import React from "react";
 import { SearchInput } from "../../Form";
-import { UserTableHead } from "../../Table/UsersTable/UserTableHead";
-import { UserTableRow } from "../../Table/UsersTable/UserTableRow";
+import { UserTableHead, UserTableRow } from "../../Table";
 
 export function Users() {
   const [search, setSearch] = React.useState<string>("");

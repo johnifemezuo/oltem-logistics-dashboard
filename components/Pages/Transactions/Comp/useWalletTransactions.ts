@@ -1,39 +1,34 @@
-import { transactionsData } from "./../../../../base/data/txns";
-/* eslint-disable no-console */
+import { useGetRequest } from "../../../../base";
+import { ITransaction, ITransactionData } from "./transaction.interface";
 
-const getCompletedTxn: any = (transactions: any) => {
-  return transactions?.filter((trxn: any) => trxn.status === "completed");
-};
+export function useWalletTransactions(status = "") {
+  const {
+    data,
+    isError,
+    prevPage,
+    nextPage,
+    gotoPage,
+    page,
+    isLoading,
+    isFetching,
+  } = useGetRequest<ITransactionData>({
+    load: true,
+    path: `/transactions/transactions?status=${status}`,
+  });
 
-const getPendingTxn: any = (transactions: any) => {
-  return transactions?.filter((trxn: any) => trxn.status === "pending");
-};
-
-const getFailedTxn: any = (transactions: any) => {
-  return transactions?.filter((trxn: any) => trxn.status === "failed");
-};
-
-export function useWalletTransactions() {
-  //   const {
-  //     userObj: { user },
-  //   }: any = useUserInfoStore();
-
-  // const { data, status } = useGetTransactions(user.id);
-  const data: any[] = [];
-  const status: string = "loading";
-
-  // Transaction types
-
-  const completedTransactions = getCompletedTxn(transactionsData);
-  const pendingTransactions = getPendingTxn(transactionsData);
-  const failedTransactions = getFailedTxn(transactionsData);
-  const allTransactions: any = transactionsData;
+  const transactions = isError
+    ? []
+    : (data?.data.transactions as ITransaction[]);
+  const pagination = isError ? [] : data?.data.pagination;
 
   return {
-    status,
-    allTransactions,
-    completedTransactions,
-    pendingTransactions,
-    failedTransactions,
+    transactions,
+    pagination,
+    page,
+    nextPage,
+    prevPage,
+    gotoPage,
+    isFetching,
+    isLoading,
   };
 }

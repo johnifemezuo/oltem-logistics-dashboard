@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BackButton, CustomButton } from "../../../Form";
 import { BlockUserModal, BlockWalletModal, CustomModal, PreviewKYCstatusModal, UserPixandName } from "../../../UI";
-import { Transactions } from "../../Transactions/Comp";
+import Transactions from "../../Transactions/Comp/Transactions";
 
 export function UserDetail() {
   const [blockUser, setBlockUser] = useState<boolean>(false);
