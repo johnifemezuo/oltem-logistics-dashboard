@@ -13,7 +13,7 @@ export function TransactionsPage() {
         </div>
       ) : (
         <BalanceDisplay
-          amount={localCurrencyFormater(totalTransactions?.data[0]?.sum)}
+          amount={localCurrencyFormater(totalTransactions?.data[0]?.sum, "USD")}
         />
       )}
       <Transactions />

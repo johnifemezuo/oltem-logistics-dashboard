@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
+import { useTransaction } from "../../base";
 import { getinitials } from "../../base/functions/text-util";
-import { useTransactionInfoStore } from "../../base/hooks/stores/auth/useTransactions";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
 import { TransactionModal } from "../UI/Modal/TransactionModal";
@@ -20,7 +20,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
   };
   const data = true;
 
-  const { transactionDetails, openTxnModal }: any = useTransactionInfoStore();
+  const { transaction, openTxnModal } = useTransaction();
 
   return (
     <div>
@@ -32,7 +32,9 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
         <div className="w-fu">
           <div className="bg-app-bg fixed top-0 right-0 z-10 w-[84%] py-6 px-12">
             <div className="text-center ">
-              <h2 className="text-lg font-semibold text-primary-color -ml-[20%]">{"Dashboard"}</h2>
+              <h2 className="text-lg font-semibold text-primary-color -ml-[20%]">
+                {"Dashboard"}
+              </h2>
 
               <div className="absolute flex--items space-x-8 text-base right-8 top-5 ">
                 <Notification />
@@ -55,7 +57,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
         </div>
       </div>
       <TransactionModal open={openTxnModal}>
-        <TransactionPreviewModal data={transactionDetails} />
+        <TransactionPreviewModal transaction={transaction} />
       </TransactionModal>
     </div>
   );

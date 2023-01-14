@@ -2,11 +2,12 @@ import { TransactionsList } from "../TransactionsList";
 import { useWalletTransactions } from "../useWalletTransactions";
 
 export const AllTransactions = () => {
-  const { transactions, nextPage, prevPage } = useWalletTransactions();
+  const { transactions, nextPage, prevPage, isFetching } =
+    useWalletTransactions();
   return (
     <TransactionsList
       transactions={transactions}
-      isLoading={false}
+      isLoading={isFetching}
       nextPage={nextPage}
       prevPage={prevPage}
     />

@@ -1,21 +1,22 @@
 import { create } from "zustand";
+import { ITransaction } from "../../../../components/Pages/Transactions";
 
-export interface ITransactionsInfo {
+export interface ITransactionsStore {
   openTxnModal: boolean;
   setOpenTxnModal: (val: boolean) => void;
 
-  transactionDetails: any;
-  storetransactionDetails: (userData: any | undefined) => void;
+  transaction: ITransaction;
+  storeTransaction: (transaction: ITransaction | undefined) => void;
 }
 
-export const useTransactionInfoStore = create<ITransactionsInfo>((set) => ({
+export const useTransaction = create<ITransactionsStore>((set) => ({
   openTxnModal: false,
   setOpenTxnModal(value: boolean) {
     set(() => ({ openTxnModal: value }));
   },
 
-  transactionDetails: "" as any,
-  storetransactionDetails(data: any) {
-    set(() => ({ transactionDetails: data }));
+  transaction: "" as any,
+  storeTransaction(data: ITransaction | undefined) {
+    set(() => ({ transaction: data }));
   },
 }));

@@ -33,7 +33,7 @@ export const useDashboardTransactions = () => {
   });
 
   const { data: totalUsers, isLoading: userLoading } = useGetRequest({
-    path: "/accounts/auth/users?count=true",
+    path: "/accounts/users?count=true",
     load: true,
     qureyOptions: {
       // refetchInterval: 10000,
@@ -41,7 +41,7 @@ export const useDashboardTransactions = () => {
   });
 
   const { data: totalActiveUsers, isLoading: aULoading } = useGetRequest({
-    path: "/accounts/auth/users?count=true&status=active",
+    path: "/accounts/users?count=true&status=active",
     load: true,
     qureyOptions: {
       // refetchInterval: 10000,
@@ -49,7 +49,7 @@ export const useDashboardTransactions = () => {
   });
 
   const { data: totalInActiveUsers, isLoading: inULoading } = useGetRequest({
-    path: "/accounts/auth/users?count=true&status=inactive",
+    path: "/accounts/users?count=true&status=inactive",
     load: true,
     qureyOptions: {
       // refetchInterval: 10000,

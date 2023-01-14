@@ -13,7 +13,10 @@ export function useWalletTransactions(status = "") {
     isFetching,
   } = useGetRequest<ITransactionData>({
     load: true,
-    path: `/transactions/transactions?status=${status}`,
+    path: `/transactions/transactions?page=20&status=${status}`,
+    qureyOptions: {
+      staleTime: 0,
+    },
   });
 
   const transactions = isError

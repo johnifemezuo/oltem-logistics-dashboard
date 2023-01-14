@@ -41,7 +41,7 @@ export function TransactionsList({
           Transactions
         </div>
 
-        {false ? (
+        {isLoading ? (
           <TxnLoadingSkeleton />
         ) : (
           <div>

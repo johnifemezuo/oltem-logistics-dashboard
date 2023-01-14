@@ -53,7 +53,7 @@ export function Wallet() {
                 <Tab.Panels className="mt-2 min-h-[500px] overflow-x-hidden overflow-y-auto">
                   <ul>
                     {transactionsData.map((data: any, idx: any) => (
-                      <TrxnList key={idx} data={data} />
+                      <TrxnList key={idx} transaction={data} />
                     ))}
                   </ul>
 

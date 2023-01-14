@@ -20,27 +20,33 @@ export function DashboardPage() {
           <div className="grid grid-cols-4 gap-6">
             <TransactionCard
               title="Total Amount of Transfers"
-              amount={localCurrencyFormater(totalTransactions?.data[0]?.sum)}
+              amount={localCurrencyFormater(
+                totalTransactions?.data[0]?.sum,
+                "USD"
+              )}
               iconBg="bg-bg-light-pink"
             />
             <TransactionCard
               title="Successful Transfers"
               amount={localCurrencyFormater(
-                totalSuccessfulTransfers?.data[0]?.sum
+                totalSuccessfulTransfers?.data[0]?.sum,
+                "USD"
               )}
               iconBg="bg-bg-light-green"
             />
             <TransactionCard
               title="Pending Transfers"
               amount={localCurrencyFormater(
-                totalPendingTransactions?.data[0]?.sum
+                totalPendingTransactions?.data[0]?.sum,
+                "USD"
               )}
               iconBg="bg-bg-light-blue"
             />
             <TransactionCard
               title="Failed Transfers"
               amount={localCurrencyFormater(
-                totalFailedTransactions?.data[0]?.sum
+                totalFailedTransactions?.data[0]?.sum,
+                "USD"
               )}
               iconBg="bg-bg-light-re"
             />

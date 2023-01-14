@@ -1,4 +1,4 @@
-import { IBase } from "../../../base.interface";
+import { IBase } from "../../../base";
 
 export interface IUser extends IBase {
   first_name: string;
@@ -16,5 +16,4 @@ export interface IUser extends IBase {
   marital_status?: string;
   deleted_at?: Date;
   profile_pics?: string;
-  kyc_verified: boolean;
 }

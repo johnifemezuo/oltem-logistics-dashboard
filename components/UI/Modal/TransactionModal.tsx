@@ -1,16 +1,16 @@
 import { ReactNode } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { useTransactionInfoStore } from "../../../base/hooks/stores/auth/useTransactions";
+import { useTransaction } from "../../../base";
 interface ITransactionModal {
   children: ReactNode;
   open: boolean;
 }
 export function TransactionModal({ children, open }: ITransactionModal) {
-  const { setOpenTxnModal }: any = useTransactionInfoStore();
-  
+  const { setOpenTxnModal, openTxnModal } = useTransaction();
+
   const closeModal = () => {
     setOpenTxnModal(false);
-  }
+  };
   return (
     <div className={`${open ? "block" : "hidden"} inset-0 w-full fixed z-50`}>
       <div
@@ -28,7 +28,7 @@ export function TransactionModal({ children, open }: ITransactionModal) {
         >
           <RxCross2 className="text-xl text-primary-color" />
         </div>
-        <div className="mt-20 px-16">{children}</div>
+        <div className="mt-20 px-16">{openTxnModal ? children : null}</div>
       </div>
     </div>
   );
