@@ -23,6 +23,7 @@ export const useGetRequest = <TResponse extends Record<string, any>>({
   const [requestPath, updatePath] = useState<string>(path);
   const { authToken } = useAuth();
   const [options, setOptions] = useState<any>(qureyOptions);
+  const [page, setPage] = useState<number>(1);
 
   const query = useQuery<any, any, IRequestSucess<TResponse>>(
     [requestPath, {}],
@@ -51,16 +52,20 @@ export const useGetRequest = <TResponse extends Record<string, any>>({
   const nextPage = () => {
     if (query.data?.data.pagination) {
       const pagination: IPagination = query.data?.data.pagination;
-      if (pagination.next_page === pagination.current_page) {
-      } else if (pagination.next_page > pagination.current_page) {
+      if (
+        pagination.next_page !== pagination.current_page &&
+        pagination.next_page > pagination.current_page
+      ) {
         updatePath(constructPaginationLink(requestPath, pagination.next_page));
       }
     }
   };
 
   const constructPaginationLink = (link: string, pageNumber: number) => {
+    const oldLink = link;
     if (link.includes("?")) {
       if (link.includes("?page=")) {
+        // replace current page number with new number
         link = link.replace(/\?page=(\d+)/gim, `?page=${pageNumber}`);
       } else if (link.includes("&page=")) {
         link = link.replace(/\&page=(\d+)/gim, `&page=${pageNumber}`);
@@ -70,19 +75,30 @@ export const useGetRequest = <TResponse extends Record<string, any>>({
     } else {
       link = `${link}?page=${pageNumber}`;
     }
+
+    // only update page when pagination is done
+    if (oldLink !== link) {
+      setPage(pageNumber);
+    }
     return link;
   };
 
   const prevPage = () => {
     if (query.data?.data.pagination) {
       const pagination: IPagination = query.data?.data.pagination;
-      if (pagination.previous_page === pagination.current_page) {
-      } else if (pagination.previous_page < pagination.current_page) {
+      if (
+        pagination.previous_page !== pagination.current_page &&
+        pagination.previous_page < pagination.current_page
+      ) {
         updatePath(
           constructPaginationLink(requestPath, pagination.previous_page)
         );
       }
     }
+  };
+
+  const gotoPage = (pageNumber: number) => {
+    updatePath(constructPaginationLink(requestPath, pageNumber));
   };
 
   const updatedPathAsync = async (link: string) => {
@@ -109,28 +125,8 @@ export const useGetRequest = <TResponse extends Record<string, any>>({
     await setOptionsAsync(fetchOptions);
     await updatedPathAsync(link);
 
-    // const getQuery = await query.refetch<TResponse>({
-    //   queryKey: [link, {}],
-    // });
     return query.data;
   };
-  const getQueryString = (pageQuery: Record<string, string>) => {
-    alert("Dont use getQuerystring");
-    const link = Object.keys(pageQuery).reduce(
-      (prevLink: string, currentKey: string) => {
-        if (prevLink.includes("?")) {
-          prevLink = `${prevLink}&${currentKey}=${pageQuery[currentKey]}`;
-        } else {
-          prevLink = `${prevLink}?${currentKey}=${pageQuery[currentKey]}`;
-        }
 
-        return prevLink;
-      },
-      requestPath
-    );
-
-    return get(link);
-  };
-
-  return { ...query, updatePath, nextPage, prevPage, get, getQueryString };
+  return { ...query, updatePath, nextPage, prevPage, get, gotoPage, page };
 };

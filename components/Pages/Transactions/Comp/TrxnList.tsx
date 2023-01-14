@@ -1,17 +1,18 @@
-import { useState } from "react";
 import CurrencyFormat from "react-currency-format";
 import { RiArrowRightSLine, RiSendPlaneFill } from "react-icons/ri";
+import { localDateFormater } from "../../../../base";
 import { useTransactionInfoStore } from "../../../../base/hooks/stores/auth/useTransactions";
 import { TxnList } from "./styles";
+import { ITransaction } from "./transaction.interface";
 
-function TrxnList(data: any) {
-  const status = data.data.status;
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  
-  const { setOpenTxnModal, storetransactionDetails }: any = useTransactionInfoStore();
-  
+function TrxnList({ transaction }: { transaction: ITransaction }) {
+  const status = transaction.transaction_status_id;
+
+  const { setOpenTxnModal, storetransactionDetails }: any =
+    useTransactionInfoStore();
+
   const previewTransaction = (data: any) => {
-    setOpenTxnModal(!openModal)
+    setOpenTxnModal(true);
     storetransactionDetails(data);
   };
 
@@ -39,12 +40,12 @@ function TrxnList(data: any) {
         </div>
         <div>
           <h3 className="text-base text-zinc-700 font-medium  leading-5">
-            {data.data.account_name}
+            {transaction.sender_name}
           </h3>
 
           <ul className="mt-2 text-sm flex--items space-x-3 font-normal leading-4 text-gray-500">
-            <li>{data.data.date}</li>
-            <li className={`${data} bg-zinc-300 w-1.5 h-1.5 rounded-full`}></li>
+            <li>{localDateFormater(transaction.created_at)}</li>
+            <li className={` bg-zinc-300 w-1.5 h-1.5 rounded-full`}></li>
             <li
               className={`${
                 status === "pending"
@@ -54,7 +55,7 @@ function TrxnList(data: any) {
                   : "text-red-400"
               } `}
             >
-              {data.data.status}
+              {status}
             </li>
           </ul>
         </div>
@@ -71,7 +72,7 @@ function TrxnList(data: any) {
       >
         {status === "completed" ? "+" : status === "failed" ? "-" : null}
         <CurrencyFormat
-          value={data.data.amount}
+          value={transaction.amount}
           displayType={"text"}
           thousandSeparator={true}
           suffix=".0"
@@ -79,7 +80,7 @@ function TrxnList(data: any) {
         />
 
         <span
-          onClick={() => previewTransaction(data)}
+          onClick={() => previewTransaction(transaction)}
           className="text-zinc-600 text-3xl cursor-pointer rounded-md transition hover:bg-app-bg  "
         >
           <RiArrowRightSLine />

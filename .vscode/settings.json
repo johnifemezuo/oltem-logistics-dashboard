@@ -1,5 +1,8 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["tanstack"]
+  "cSpell.words": ["tanstack"],
+  "exportall.config.folderListener": [
+    "/components/Pages/Transactions/Comp/TransactionTypes"
+  ]
 }
