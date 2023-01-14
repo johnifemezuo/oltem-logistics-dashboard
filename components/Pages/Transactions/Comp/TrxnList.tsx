@@ -17,7 +17,7 @@ function TrxnList({ transaction }: { transaction: ITransaction }) {
   };
 
   return (
-    <TxnList>
+    <TxnList onClick={() => previewTransaction(transaction)}>
       <div className="flex--items space-x-6 ">
         <div
           className={`${
@@ -81,7 +81,7 @@ function TrxnList({ transaction }: { transaction: ITransaction }) {
 
         <span
           onClick={() => previewTransaction(transaction)}
-          className="text-zinc-600 text-3xl cursor-pointer rounded-md transition hover:bg-app-bg  "
+          className="text-zinc-600 text-3xl "
         >
           <RiArrowRightSLine />
         </span>

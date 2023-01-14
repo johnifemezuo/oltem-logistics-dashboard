@@ -11,7 +11,7 @@ interface ICustomInput {
   inputRef?: any;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
-  lable?: string;
+  label?: string;
   register?: any;
   placeholder?: string;
   readOnly?: boolean;
@@ -21,7 +21,7 @@ interface ICustomInput {
 }
 
 export function CustomInput({
-  lable,
+  label,
   tick,
   type = "text",
   value,
@@ -34,7 +34,7 @@ export function CustomInput({
 }: ICustomInput) {
   return (
     <div className="text-left relative w-full">
-      <InputLabel label={lable} />
+      <InputLabel label={label} />
       <div
         className="w-full flex bg-white mt-2  
     border rounded-lg
@@ -42,12 +42,11 @@ export function CustomInput({
       >
         <input
           className={`
-    bg-white rounded-md text-lg 
+    bg-white rounded-md text-base 
     focus:ring-1 shadow-sm border-slate-300 placeholder-slate-400
     placeholder:text-md 
     focus:outline-none 
     w-full py-3.5 px-4 transition duration-300
-    text-md
       
     ${
       disabled === true ? "bg-zinc-100 text-zinc-500" : "bg-white text-zinc-700"
