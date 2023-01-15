@@ -1,6 +1,7 @@
 import React from "react";
 import { HiUserGroup } from "react-icons/hi";
 import { RiDashboardFill, RiSendPlaneFill } from "react-icons/ri";
+import { GoSettings } from "react-icons/go";
 import { Routes } from "./routes-constants";
 
 export interface MenuListInterface {
@@ -24,5 +25,10 @@ export const MenuList: MenuListInterface[] = [
     path: Routes.users,
     name: "Users",
     icon: <HiUserGroup className="text-2xl" />,
+  },
+  {
+    path: Routes.rates,
+    name: "Rates",
+    icon: <GoSettings className="text-2xl" />,
   },
 ];

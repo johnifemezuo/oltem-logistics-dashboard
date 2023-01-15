@@ -16,8 +16,8 @@ interface ICustomInput {
   placeholder?: string;
   readOnly?: boolean;
   tick?: boolean;
-  touched: boolean;
-  error: string | undefined;
+  touched?: boolean;
+  error?: string | undefined;
 }
 
 export function CustomInput({

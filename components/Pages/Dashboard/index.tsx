@@ -1,3 +1,5 @@
+import { FaUsers } from "react-icons/fa";
+import { RiShoppingCart2Line } from "react-icons/ri";
 import Skeleton from "react-loading-skeleton";
 import { localCurrencyFormater } from "../../../base";
 import { TransactionCard } from "../../Card/TransactionCard";
@@ -20,35 +22,35 @@ export function DashboardPage() {
           <div className="grid grid-cols-4 gap-6">
             <TransactionCard
               title="Total Amount of Transfers"
-              amount={localCurrencyFormater(
-                totalTransactions?.data[0]?.sum,
-                "USD"
-              )}
+              amount={localCurrencyFormater(totalTransactions?.data[0]?.sum, "USD")}
               iconBg="bg-bg-light-pink"
             />
             <TransactionCard
               title="Successful Transfers"
-              amount={localCurrencyFormater(
-                totalSuccessfulTransfers?.data[0]?.sum,
-                "USD"
-              )}
+              amount={localCurrencyFormater(totalSuccessfulTransfers?.data[0]?.sum, "USD")}
               iconBg="bg-bg-light-green"
             />
             <TransactionCard
               title="Pending Transfers"
-              amount={localCurrencyFormater(
-                totalPendingTransactions?.data[0]?.sum,
-                "USD"
-              )}
+              amount={localCurrencyFormater(totalPendingTransactions?.data[0]?.sum, "USD")}
               iconBg="bg-bg-light-blue"
             />
             <TransactionCard
               title="Failed Transfers"
-              amount={localCurrencyFormater(
-                totalFailedTransactions?.data[0]?.sum,
-                "USD"
-              )}
+              amount={localCurrencyFormater(totalFailedTransactions?.data[0]?.sum, "USD")}
               iconBg="bg-bg-light-re"
+            />
+            <TransactionCard
+              title="Total Amount of Users"
+              amount={localCurrencyFormater(totalFailedTransactions?.data[0]?.sum, "USD")}
+              iconBg="bg-[#E9E9E9]"
+              icon={<FaUsers className="text-xl" />}
+            />
+            <TransactionCard
+              title="Active Users"
+              amount={localCurrencyFormater(totalFailedTransactions?.data[0]?.sum, "USD")}
+              iconBg="bg-[#E2FFE7]"
+              icon={<FaUsers className="text-xl" />}
             />
           </div>
         </>

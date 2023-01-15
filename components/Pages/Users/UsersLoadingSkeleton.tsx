@@ -4,7 +4,7 @@ import { LoadingIcon } from "./LoadingIcon";
 
 export default function UsersLoadingSkeleton() {
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <ContentLoader
         height={155}
         width={900}
@@ -12,12 +12,15 @@ export default function UsersLoadingSkeleton() {
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
       >
-        <circle cx="12" cy="22" r="9" />
-        <rect x="30" y="14" rx="3" ry="1" width="50" height="8" />
-        <rect x="30" y="26" rx="3" ry="0" width="40" height="4" />
-        <rect x="270" y="20" rx="3" ry="1" width="35" height="8" />
+        <rect x="20" y="20" rx="3" ry="1" width="50" height="8" />
+        <rect x="300" y="20" rx="3" ry="1" width="35" height="8" />
+        <rect x="170" y="20" rx="3" ry="1" width="35" height="8" />
+        <rect x="100" y="20" rx="3" ry="1" width="35" height="8" />
+        <rect x="230" y="20" rx="3" ry="1" width="35" height="8" />
+        <rect x="170" y="20" rx="3" ry="1" width="35" height="8" />
       </ContentLoader>
-      <div className="-mt-14">
+
+      <div className="-mt-20">
         <ContentLoader
           height={155}
           width={900}
@@ -25,14 +28,18 @@ export default function UsersLoadingSkeleton() {
           backgroundColor="#f3f3f3"
           foregroundColor="#ecebeb"
         >
-          <circle cx="12" cy="22" r="9" />
-          <rect x="30" y="14" rx="3" ry="1" width="50" height="8" />
-          <rect x="30" y="26" rx="3" ry="0" width="40" height="4" />
-          <rect x="270" y="20" rx="3" ry="1" width="35" height="8" />
+          <rect x="20" y="20" rx="3" ry="1" width="50" height="8" />
+          <rect x="300" y="20" rx="3" ry="1" width="35" height="8" />
+          <rect x="170" y="20" rx="3" ry="1" width="35" height="8" />
+          <rect x="100" y="20" rx="3" ry="1" width="35" height="8" />
+          <rect x="230" y="20" rx="3" ry="1" width="35" height="8" />
+          <rect x="170" y="20" rx="3" ry="1" width="35" height="8" />
         </ContentLoader>
       </div>
 
-      <LoadingIcon text="Loading Users" />
+      <div className="mb-12 m">
+        <LoadingIcon text="Loading Users" />
+      </div>
     </div>
   );
 }
