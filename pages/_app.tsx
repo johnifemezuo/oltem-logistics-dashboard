@@ -4,6 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { AuthContext, queryClient } from "../base";
 import "../styles/globals.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <AuthContext>
         <Component {...pageProps} />
       </AuthContext>
+      <Toaster />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

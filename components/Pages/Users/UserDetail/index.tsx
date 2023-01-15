@@ -100,7 +100,10 @@ export function UserDetail({ userId }: { userId: string }) {
               isOpen={blockUser}
               showCloseButton={true}
             >
-              <BlockUserModal closeModal={() => setBlockUser(false)} />
+              <BlockUserModal
+                userId={userId}
+                closeModal={() => setBlockUser(false)}
+              />
             </CustomModal>
 
             <CustomModal
@@ -108,7 +111,10 @@ export function UserDetail({ userId }: { userId: string }) {
               isOpen={blockWallet}
               showCloseButton={true}
             >
-              <BlockWalletModal closeModal={() => setBlockWallet(false)} />
+              <BlockWalletModal
+                userId={userId}
+                closeModal={() => setBlockWallet(false)}
+              />
             </CustomModal>
 
             <CustomModal

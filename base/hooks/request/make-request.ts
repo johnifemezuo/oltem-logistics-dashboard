@@ -50,7 +50,11 @@ export async function makeRequest<TResponse>({
       ...jsonResp,
       statusCode: responseCode,
     });
-  } catch (error) {
-    // throw new Error({})
+  } catch (error: any) {
+    return errorTransformer({
+      statusCode: error.status,
+      message: error.message,
+      code: error.status || error.status,
+    });
   }
 }
