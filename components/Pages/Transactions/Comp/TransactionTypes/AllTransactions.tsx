@@ -2,7 +2,7 @@ import { TransactionsList } from "../TransactionsList";
 import { useWalletTransactions } from "../useWalletTransactions";
 
 export const AllTransactions = ({ userId }: { userId?: string }) => {
-  const { transactions, nextPage, prevPage, isFetching } =
+  const { transactions, nextPage, prevPage, isFetching, search } =
     useWalletTransactions({ userId });
   return (
     <TransactionsList
@@ -10,6 +10,7 @@ export const AllTransactions = ({ userId }: { userId?: string }) => {
       isLoading={isFetching}
       nextPage={nextPage}
       prevPage={prevPage}
+      search={search}
     />
   );
 };

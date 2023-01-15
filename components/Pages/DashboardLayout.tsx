@@ -1,9 +1,13 @@
-import { FC, ReactNode } from "react";
-import { getinitials, useTransaction } from "../../base";
+import { FC, ReactNode, useEffect, useState } from "react";
+import {
+  getInitialsFrom,
+  IUser,
+  useAuthProvider,
+  useTransaction,
+} from "../../base";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
-import { TransactionPreviewModal } from "../UI";
-import { TransactionModal } from "../UI/Modal/TransactionModal";
+import { TransactionModal, TransactionPreviewModal } from "../UI";
 import UserProfile from "../UI/UserProfile";
 
 interface IDashboardLayout {
@@ -11,15 +15,15 @@ interface IDashboardLayout {
 }
 
 export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
-  const user = {
-    profile_pics: "",
-    first_name: "Johnny",
-    last_name: "Drill",
-    email: "johnny@gmail.com",
-  };
-  const data = true;
-
+  const { user: session } = useAuthProvider();
   const { transaction, openTxnModal } = useTransaction();
+  const [user, setUser] = useState<IUser>();
+
+  useEffect(() => {
+    if (session?.user) {
+      setUser(session.user);
+    }
+  }, [session]);
 
   return (
     <div>
@@ -40,10 +44,12 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
 
                 <div>
                   <UserProfile
-                    userImg={user?.profile_pics}
-                    initials={getinitials(user?.first_name, user?.last_name)}
-                    userName={data && user?.first_name + " " + user?.last_name}
-                    email={data && user?.email}
+                    userImg={user?.profile_pics as string}
+                    initials={getInitialsFrom(
+                      `${user?.first_name} ${user?.last_name}`
+                    )}
+                    userName={user?.first_name + " " + session?.user?.last_name}
+                    email={user?.email}
                   />
                 </div>
               </div>

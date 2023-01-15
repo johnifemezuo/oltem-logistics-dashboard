@@ -13,12 +13,12 @@ export function TransactionPreviewModal({
   const [isSuccessfull, setIsSuccessful] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const transactionStatus = transaction.transactionStatus;
-  console.log({ transaction });
+
   const transactionType = transaction?.transactionType;
   return (
     <div>
-      <h1 className="text-2xl text-center  font-semibold">
-        Pending Transactions
+      <h1 className="text-2xl text-center capitalize  font-semibold">
+        {transactionStatus.name} Transactions
       </h1>
 
       <div className=" divide-y mt-8">
@@ -128,4 +128,3 @@ export function TransactionPreviewModal({
     </div>
   );
 }
-

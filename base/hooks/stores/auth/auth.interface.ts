@@ -4,7 +4,6 @@ export interface IUser extends IBase {
   first_name: string;
   last_name: string;
   dob: Date;
-  password: string;
   phone: string;
   phone_verified?: boolean;
   email: string;

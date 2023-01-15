@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Popover, Transition } from "@headlessui/react";
-import React from "react";
-import Link from "next/link";
-import { Routes } from "../../../base/routes-constants";
+import { useAuth } from "../../../base";
 interface IUserProfile {
   userName?: string;
   userImg?: string;
@@ -16,6 +14,10 @@ export default function UserProfile({
   initials,
   email,
 }: IUserProfile) {
+  const { logout } = useAuth();
+  if (!userName || !initials || !email) {
+    return null;
+  }
   return (
     <Popover>
       {({ open }) => (
@@ -66,22 +68,8 @@ export default function UserProfile({
                   <h4 className="text-zinc-600">{userName}</h4>
                   <div className="font-medium  truncate">{email}</div>
                 </div>
-                <ul
-                  className="py-1 text-sm text-left text-gray-700 dark:text-gray-200"
-                  aria-labelledby="dropdownUserAvatarButton"
-                >
-                  <li>
-                    <Link href={Routes.dashboard} className="profile-link">
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={Routes.dashboard} className="profile-link">
-                      Account Security
-                    </Link>
-                  </li>
-                </ul>
-                <div className="py-1" onClick={() => {}}>
+
+                <div className="py-1 cursor-pointer" onClick={logout}>
                   <p className="profile-link">Log out</p>
                 </div>
               </div>

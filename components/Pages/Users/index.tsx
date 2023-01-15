@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { SearchInput } from "../../Form";
 import { UserTableHead } from "../../Table/UsersTable/UserTableHead";
 import { UserTableRow } from "../../Table/UsersTable/UserTableRow";
@@ -6,14 +7,17 @@ import { useUsers } from "./useUsers";
 const paginationBtn =
   "bg-white rounded-md border hover:text-white hover:bg-app-bg hover:text-zinc-500 transition duration-300 text-neutral-600 gap-3 py-2  px-4 text-sm";
 export function Users() {
-  const { users, prevPage, nextPage, isFetching } = useUsers();
+  const { users, prevPage, nextPage, isFetching, searchUser } = useUsers();
 
+  const handleSearchInput = useCallback((searcValue: string) => {
+    searchUser(searcValue);
+  }, []);
   return (
     <div className="md:w-full py-8  h-auto w-full">
       <div className="w-[500px] ml-12">
         <SearchInput
           placeholder="Search by account name..."
-          setSearch={() => {}}
+          setSearch={handleSearchInput}
           showFilter={false}
         />
       </div>

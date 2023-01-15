@@ -1,3 +1,5 @@
+import { IUser } from "../../../../base";
+
 export interface ILogin {
   email: string;
   password: string;
@@ -10,7 +12,7 @@ export interface ILoginResponse {
 }
 
 export interface ILoginData {
-  user: User;
+  user: IUser;
   auth_token: string;
   login_history: LoginHistory;
   kyc_verified: boolean;
@@ -52,26 +54,6 @@ interface Location {
   region: string;
   isp: string;
   user_id: string;
-  created_at: string;
-  updated_at: string;
-}
-
-interface User {
-  id: string;
-  first_name: string;
-  last_name: string;
-  profile_pics: null;
-  dob: string;
-  gender: null;
-  email: string;
-  email_verified: boolean;
-  phone: string;
-  phone_verified: boolean;
-  marital_status: null;
-  is_active: boolean;
-  bvn: string;
-  bvn_verified: boolean;
-  deleted_at: null;
   created_at: string;
   updated_at: string;
 }

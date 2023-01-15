@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useDebounce } from "use-lodash-debounce";
 import { useGetRequest } from "../../../../base";
 import { ITransaction, ITransactionData } from "./transaction.interface";
 
@@ -22,6 +24,7 @@ export function useWalletTransactions({
     page,
     isLoading,
     isFetching,
+    get,
   } = useGetRequest<ITransactionData>({
     load: true,
     path: `/transactions/transactions?${fetchQueryString}`,
@@ -35,6 +38,15 @@ export function useWalletTransactions({
     : (data?.data.transactions as ITransaction[]);
   const pagination = isError ? [] : data?.data.pagination;
 
+  const [searchString, search] = useState<string>();
+  const debouncedSearchString = useDebounce(searchString, 400);
+
+  useEffect(() => {
+    if (debouncedSearchString || debouncedSearchString === "") {
+      get("/transactions/transactions?search=" + debouncedSearchString);
+    }
+  }, [debouncedSearchString]);
+
   return {
     transactions,
     pagination,
@@ -44,5 +56,6 @@ export function useWalletTransactions({
     gotoPage,
     isFetching,
     isLoading,
+    search,
   };
 }
