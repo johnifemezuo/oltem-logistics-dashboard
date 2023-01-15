@@ -1,10 +1,10 @@
+import { SearchInput } from "../../Form";
 import { UserTableHead } from "../../Table/UsersTable/UserTableHead";
 import { UserTableRow } from "../../Table/UsersTable/UserTableRow";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 import { useUsers } from "./useUsers";
 const paginationBtn =
   "bg-white rounded-md border hover:text-white hover:bg-app-bg hover:text-zinc-500 transition duration-300 text-neutral-600 gap-3 py-2  px-4 text-sm";
-import { SearchInput } from "../../Form";
 export function Users() {
   const { users, prevPage, nextPage, isFetching } = useUsers();
 
@@ -36,6 +36,7 @@ export function Users() {
                     wallet_balance={"0"}
                     kyc_status={user.kyc_verified ? "completed" : "pending"}
                     last_login={new Date().toDateString()}
+                    userId={user.id}
                   />
                 ))}
               </tbody>

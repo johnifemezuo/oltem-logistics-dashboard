@@ -9,6 +9,7 @@ interface IUserTableRow {
   kyc_status: string;
   last_login: string;
   num?: number;
+  userId: string;
 }
 
 export function UserTableRow({
@@ -19,35 +20,39 @@ export function UserTableRow({
   kyc_status,
   last_login,
   num,
+  userId,
 }: IUserTableRow) {
-    const { route, push } = useRouter();
+  const { route, push } = useRouter();
 
   return (
-      <tr onClick={() => push(`/dashboard/users/${num}`)} className="bg-white transition cursor-pointer hover:bg-blue-50/30 border-b dark:bg-gray-800  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-        <th scope="row" className="pl-12 pr-8 py-4 font-medium text-zinc-600 ">
-          {num}
-        </th>
-        <td className="px-6 py-4 font-medium text-zinc-600">{customer_name}</td>
-        <td className="px-6 py-4 font-medium text-zinc-600">{email_address}</td>
-        <td className="px-6 py-4 font-medium text-zinc-600">{phone_number}</td>
-        <td className="px-6 py-4 font-medium text-zinc-600">{wallet_balance}</td>
-        <td className="px-6 py-4 font-medium text-zinc-600">
-          <span
-            className={`px-4 rounded-md py-1.5 text-sm grid text-center  text-zinc-600 ${
-              kyc_status === "pending"
-                ? "text-primary-color bg-[#F3F5FE]"
-                : kyc_status === "completed"
-                ? "text-green-600 bg-[#E2FFE7]"
-                : "text-red-400 bg-[#FFDBDB]"
-            } `}
-          >
-            {kyc_status}
-          </span>
-        </td>
-        <td className="px-6 py-4 font-medium text-zinc-600">{last_login}</td>
-        <td className="px-8 py-4 text-xl ">
-          <RiArrowRightSLine />
-        </td>
-      </tr>
+    <tr
+      onClick={() => push(`/dashboard/users/${userId}`)}
+      className="bg-white transition cursor-pointer hover:bg-blue-50/30 border-b dark:bg-gray-800  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+    >
+      <th scope="row" className="pl-12 pr-8 py-4 font-medium text-zinc-600 ">
+        {num}
+      </th>
+      <td className="px-6 py-4 font-medium text-zinc-600">{customer_name}</td>
+      <td className="px-6 py-4 font-medium text-zinc-600">{email_address}</td>
+      <td className="px-6 py-4 font-medium text-zinc-600">{phone_number}</td>
+      <td className="px-6 py-4 font-medium text-zinc-600">{wallet_balance}</td>
+      <td className="px-6 py-4 font-medium text-zinc-600">
+        <span
+          className={`px-4 rounded-md py-1.5 text-sm grid text-center  text-zinc-600 ${
+            kyc_status === "pending"
+              ? "text-primary-color bg-[#F3F5FE]"
+              : kyc_status === "completed"
+              ? "text-green-600 bg-[#E2FFE7]"
+              : "text-red-400 bg-[#FFDBDB]"
+          } `}
+        >
+          {kyc_status}
+        </span>
+      </td>
+      <td className="px-6 py-4 font-medium text-zinc-600">{last_login}</td>
+      <td className="px-8 py-4 text-xl ">
+        <RiArrowRightSLine />
+      </td>
+    </tr>
   );
 }

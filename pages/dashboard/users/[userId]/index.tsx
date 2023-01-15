@@ -1,7 +1,9 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { UserDetail } from "../../../../components/Pages/Users/UserDetail";
 
 export default function UserDetailPage() {
+  const { query } = useRouter();
   return (
     <>
       <Head>
@@ -9,7 +11,7 @@ export default function UserDetailPage() {
         <title>Users</title>
       </Head>
 
-      <UserDetail />
+      {query.userId ? <UserDetail userId={query.userId as string} /> : null}
     </>
   );
 }

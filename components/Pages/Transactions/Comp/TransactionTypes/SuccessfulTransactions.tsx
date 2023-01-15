@@ -1,9 +1,12 @@
 import { TransactionsList } from "../TransactionsList";
 import { useWalletTransactions } from "../useWalletTransactions";
 
-export const SuccessfulTransactions = () => {
+export const SuccessfulTransactions = ({ userId }: { userId?: string }) => {
   const { transactions, nextPage, prevPage, isFetching } =
-    useWalletTransactions("completed");
+    useWalletTransactions({
+      status: "completed",
+      userId,
+    });
   return (
     <TransactionsList
       transactions={transactions}

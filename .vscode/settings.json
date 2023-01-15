@@ -6,6 +6,7 @@
     "/components/Pages/Transactions/Comp/TransactionTypes",
     "/components",
     "/components/**/*",
-    "/components/Pages/Rate"
+    "/components/Pages/Rate",
+    "/base/functions"
   ]
 }

@@ -57,3 +57,12 @@ export interface ICurrency {
   created_at: string;
   updated_at: string;
 }
+
+
+export interface TransactionQuery {
+  type?: string;
+  status?: string;
+  userId?: string;
+  page?: number;
+  size?: number;
+}

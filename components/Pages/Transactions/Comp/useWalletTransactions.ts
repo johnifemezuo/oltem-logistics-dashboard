@@ -1,7 +1,18 @@
 import { useGetRequest } from "../../../../base";
 import { ITransaction, ITransactionData } from "./transaction.interface";
 
-export function useWalletTransactions(status = "") {
+export function useWalletTransactions({
+  status = "",
+  userId,
+}: {
+  userId?: string;
+  status?: string;
+}) {
+  let fetchQueryString =
+    typeof status === "string" && userId
+      ? `status=${status}&userId=${userId}`
+      : `status=${status}`;
+
   const {
     data,
     isError,
@@ -13,7 +24,7 @@ export function useWalletTransactions(status = "") {
     isFetching,
   } = useGetRequest<ITransactionData>({
     load: true,
-    path: `/transactions/transactions?page=20&status=${status}`,
+    path: `/transactions/transactions?${fetchQueryString}`,
     qureyOptions: {
       staleTime: 0,
     },

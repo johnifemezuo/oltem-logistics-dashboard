@@ -1,9 +1,9 @@
 import { TransactionsList } from "../TransactionsList";
 import { useWalletTransactions } from "../useWalletTransactions";
 
-export const PendingTransactions = () => {
+export const PendingTransactions = ({ userId }: { userId?: string }) => {
   const { transactions, nextPage, prevPage, isFetching } =
-    useWalletTransactions("pending");
+    useWalletTransactions({ status: "pending", userId });
   return (
     <TransactionsList
       transactions={transactions}

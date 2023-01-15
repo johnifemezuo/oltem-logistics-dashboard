@@ -17,3 +17,14 @@ export interface IUser extends IBase {
   deleted_at?: Date;
   profile_pics?: string;
 }
+
+
+export interface IWallet extends IBase {
+  user_id: string;
+  is_active?: boolean;
+  ledger_balance?: number;
+  available_balance?: number;
+  account_number: string;
+  account_name: string;
+  bank_name: string;
+}

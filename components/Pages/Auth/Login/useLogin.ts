@@ -47,7 +47,9 @@ export const useLogin = () => {
   const handleLogin = (data: ILogin) => {
     post(data, {
       onError: (errorData) => {
-        setServerError(errorData.message);
+        setServerError(
+          errorData?.message ?? "Error occured during login, please try again "
+        );
       },
     });
   };
