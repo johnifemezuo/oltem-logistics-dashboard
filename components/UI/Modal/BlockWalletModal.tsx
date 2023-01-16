@@ -47,31 +47,34 @@ export function BlockWalletModal({
         "You need to select a reason for blocking this customer's wallet"
       );
     }
-  }, [selected]);
+  }, [selected, userId, walletId]);
 
   const unblockUserWallet = useCallback(() => {
     return handleUnBlockUserWallet();
-  }, []);
+  }, [userId, walletId]);
 
   return (
     <div className="w-[500px] text-center space-y-9 p-8">
       <div className="space-y-2">
         <h1 className="md:text-xl font-semibold text-primary-color">
-          Block Wallet
+          {isActive ? "Block" : "Unblock"} Wallet
         </h1>
 
-        <p className="text-gray-500">
-          Why are you blocking this users wallet??
-        </p>
+        {isActive ? (
+          <p className="text-gray-500">
+            Why are you blocking this users wallet??
+          </p>
+        ) : null}
       </div>
-
-      <div className="w-[350px] mx-auto ">
-        <DropdownSelect
-          options={people}
-          selected={selected}
-          setSelected={setSelected}
-        />
-      </div>
+      {isActive ? (
+        <div className="w-[350px] mx-auto ">
+          <DropdownSelect
+            options={people}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        </div>
+      ) : null}
 
       <div className="space-y-4 pt-12">
         <div className="grid grid-cols-2 mx-auto w-[350px] gap-6">

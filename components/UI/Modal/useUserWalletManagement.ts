@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { toast } from "react-hot-toast";
 import { promiseToaster, queryClient, usePatchRequest } from "../../../base";
 import { IWallet } from "../../Pages/Users/user.interface";
 
@@ -35,33 +36,44 @@ export const useUserWalletManagement = ({
     queryClient.setQueryData(queryKey, oldData);
   };
 
-  const handleBlockUserWallet = useCallback((reason: string) => {
-    promiseToaster(
-      blockPatch(
-        { reason },
-        {
-          onSuccess(data) {
-            updateCache(data);
-          },
-        }
-      )
-    );
+  const handleBlockUserWallet = useCallback(
+    (reason: string) => {
+      if (walletId) {
+        promiseToaster(
+          blockPatch(
+            { reason },
+            {
+              onSuccess(data) {
+                updateCache(data);
+              },
+            }
+          )
+        );
+      } else {
+        toast.error("User has no wallet yet");
+      }
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    [walletId]
+  );
 
   const handleUnBlockUserWallet = useCallback(() => {
-    promiseToaster(
-      unblockPatch(
-        {},
-        {
-          onSuccess(data) {
-            updateCache(data);
-          },
-        }
-      )
-    );
+    if (walletId) {
+      promiseToaster(
+        unblockPatch(
+          {},
+          {
+            onSuccess(data) {
+              updateCache(data);
+            },
+          }
+        )
+      );
+    } else {
+      toast.error("User has no wallet yet");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [walletId]);
 
   return {
     blockError,

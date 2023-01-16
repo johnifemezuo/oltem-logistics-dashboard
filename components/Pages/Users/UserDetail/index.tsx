@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { getInitialsFrom, localCurrencyFormater } from "../../../../base";
+import {
+  getInitialsFrom,
+  localCurrencyFormater,
+  localDateFormater,
+} from "../../../../base";
 import { BackButton, CustomButton } from "../../../Form";
 import {
   BlockUserModal,
@@ -9,6 +13,7 @@ import {
   UserPixandName,
 } from "../../../UI";
 import Transactions from "../../Transactions/Comp/Transactions";
+import { IKyc } from "../user.interface";
 import { UserDetailLoading } from "./UserDetailLoading";
 import { useUserDetails } from "./useUserDetails";
 import { useUserWallet } from "./useUserWallet";
@@ -69,7 +74,9 @@ export function UserDetail({ userId }: { userId: string }) {
                 <div className="space-y-1">
                   <h3 className="text-zinc-400 text-sm">Last Log In</h3>
                   <h1 className="font-medium text-zinc-700">
-                    05-08-2021 10:00AM
+                    {localDateFormater(
+                      user.last_login?.updated_at || new Date()
+                    )}
                   </h1>
                 </div>
               </div>
@@ -127,7 +134,7 @@ export function UserDetail({ userId }: { userId: string }) {
               isOpen={kYC}
               showCloseButton={true}
             >
-              <PreviewKYCstatusModal />
+              <PreviewKYCstatusModal kycVerified={user.kyc_verified as boolean} kycs={user.kycs ?? ([] as IKyc[])} />
             </CustomModal>
           </div>
         </>

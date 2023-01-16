@@ -22,7 +22,7 @@ export function UserTableRow({
   num,
   userId,
 }: IUserTableRow) {
-  const { route, push } = useRouter();
+  const { push } = useRouter();
 
   return (
     <tr
@@ -49,7 +49,7 @@ export function UserTableRow({
           {kyc_status}
         </span>
       </td>
-      <td className="px-6 py-4 font-medium text-zinc-600">{last_login}</td>
+      {/* <td className="px-6 py-4 font-medium text-zinc-600">{last_login}</td> */}
       <td className="px-8 py-4 text-xl ">
         <RiArrowRightSLine />
       </td>
