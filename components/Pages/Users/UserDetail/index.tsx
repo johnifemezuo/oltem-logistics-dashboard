@@ -19,12 +19,7 @@ export function UserDetail({ userId }: { userId: string }) {
 
   const { user, isLoading } = useUserDetails(userId);
   console.log({ user });
-  const {
-    wallet,
-    isLoading: isWalletLoading,
-    isError,
-    isFetching,
-  } = useUserWallet(userId);
+  const { wallet, isLoading: isWalletLoading } = useUserWallet(userId);
 
   return (
     <>
