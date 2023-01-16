@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { CustomButton } from "../../Form";
 import DropdownSelect from "../DropdownSelect";
-import { useBlockUserWallet } from "./useBlockUserWallet";
+import { useUserWalletManagement } from "./useUserWalletManagement";
 
 const people: { name: string; id: number }[] = [
   {
@@ -18,14 +18,26 @@ const people: { name: string; id: number }[] = [
 
 export function BlockWalletModal({
   closeModal,
+  walletId,
+  isActive,
   userId,
 }: {
   closeModal: any;
-  userId: string;
+  walletId: string | undefined;
+  isActive: boolean;
+  userId: string | undefined;
 }) {
   const [selected, setSelected] = useState<any>("");
 
-  const { handleBlockUserWallet, isLoading } = useBlockUserWallet({ userId });
+  const {
+    handleBlockUserWallet,
+    handleUnBlockUserWallet,
+    isBlocking,
+    isUnblocking,
+  } = useUserWalletManagement({
+    walletId,
+    userId,
+  });
 
   const blockUserWallet = useCallback(() => {
     if (selected) {
@@ -36,6 +48,10 @@ export function BlockWalletModal({
       );
     }
   }, [selected]);
+
+  const unblockUserWallet = useCallback(() => {
+    return handleUnBlockUserWallet();
+  }, []);
 
   return (
     <div className="w-[500px] text-center space-y-9 p-8">
@@ -60,12 +76,13 @@ export function BlockWalletModal({
       <div className="space-y-4 pt-12">
         <div className="grid grid-cols-2 mx-auto w-[350px] gap-6">
           <CustomButton
-            onClick={blockUserWallet}
-            isLoading={isLoading}
+            onClick={isActive ? blockUserWallet : unblockUserWallet}
+            isLoading={isActive ? isBlocking : isUnblocking}
             className="full"
           >
             Proceed
           </CustomButton>
+
           <CustomButton
             onClick={closeModal}
             bg_color="full border bg-zinc-100 text-primary-color"

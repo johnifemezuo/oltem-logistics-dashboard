@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SearchInput } from "../../../Form";
 import { EmptyUI } from "../../../UI";
 import { ITransaction } from "./transaction.interface";
@@ -19,6 +20,8 @@ export function TransactionsList({
 }) {
   const paginationBtn =
     "bg-white rounded-md border hover:text-white hover:bg-app-bg hover:text-zinc-500 transition duration-300 text-neutral-600 gap-3 py-2  px-4 text-sm";
+  
+  const [calendarValue, setCalendarValue] = useState(new Date());
 
   return (
     <div>
@@ -26,6 +29,7 @@ export function TransactionsList({
         <SearchInput
           placeholder="Search by account name..."
           setSearch={search}
+          calendarValue={calendarValue}
         />
 
         <div className="w-full px-4 py-2 text-sm mt-1 font-medium text-zinc-600  bg-[#F9F9F9]">
@@ -38,13 +42,10 @@ export function TransactionsList({
           <div>
             <>
               <div className="h-[450px] bg-transparent overflow-y-auto">
-                {transactions.length > 0 ? (
+                {transactions?.length > 0 ? (
                   <div className="divide-y">
                     {transactions?.map((transaction) => (
-                      <TrxnList
-                        key={transaction.id}
-                        transaction={transaction}
-                      />
+                      <TrxnList key={transaction.id} transaction={transaction} />
                     ))}
                   </div>
                 ) : (

@@ -9,6 +9,7 @@ import {
   UserPixandName,
 } from "../../../UI";
 import Transactions from "../../Transactions/Comp/Transactions";
+import { UserDetailLoading } from "./UserDetailLoading";
 import { useUserDetails } from "./useUserDetails";
 import { useUserWallet } from "./useUserWallet";
 
@@ -18,12 +19,19 @@ export function UserDetail({ userId }: { userId: string }) {
   const [kYC, setKYC] = useState<boolean>(false);
 
   const { user, isLoading } = useUserDetails(userId);
-  console.log({ user });
-  const { wallet, isLoading: isWalletLoading } = useUserWallet(userId);
+
+  const {
+    wallet,
+    isLoading: isWalletLoading,
+    isError,
+    isFetching,
+  } = useUserWallet(userId);
 
   return (
     <>
-      {isLoading || isWalletLoading ? null : (
+      {isLoading || isWalletLoading ? (
+        <UserDetailLoading />
+      ) : (
         <>
           <div className="md:w-[1000px] mx-auto py-16 h-auto w-full">
             <div className="space-y-8">
@@ -76,9 +84,9 @@ export function UserDetail({ userId }: { userId: string }) {
 
               <CustomButton
                 onClick={() => setBlockWallet(true)}
-                className="w-[150px] "
+                className="min-[150px] "
               >
-                Block Wallet
+                {wallet.is_active ? "Block Wallet" : "Un-block Wallet"}
               </CustomButton>
               <CustomButton
                 onClick={() => setKYC(true)}
@@ -107,6 +115,8 @@ export function UserDetail({ userId }: { userId: string }) {
               showCloseButton={true}
             >
               <BlockWalletModal
+                walletId={wallet?.id}
+                isActive={wallet.is_active ?? false}
                 userId={userId}
                 closeModal={() => setBlockWallet(false)}
               />
