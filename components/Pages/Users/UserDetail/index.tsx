@@ -9,6 +9,7 @@ import {
   UserPixandName,
 } from "../../../UI";
 import Transactions from "../../Transactions/Comp/Transactions";
+import { UserDetailLoading } from "./UserDetailLoading";
 import { useUserDetails } from "./useUserDetails";
 import { useUserWallet } from "./useUserWallet";
 
@@ -19,16 +20,13 @@ export function UserDetail({ userId }: { userId: string }) {
 
   const { user, isLoading } = useUserDetails(userId);
   console.log({ user });
-  const {
-    wallet,
-    isLoading: isWalletLoading,
-    isError,
-    isFetching,
-  } = useUserWallet(userId);
+  const { wallet, isLoading: isWalletLoading, isError, isFetching } = useUserWallet(userId);
 
   return (
     <>
-      {isLoading || isWalletLoading ? null : (
+      {isLoading || isWalletLoading ? (
+        <UserDetailLoading />
+      ) : (
         <>
           <div className="md:w-[1000px] mx-auto py-16 h-auto w-full">
             <div className="space-y-8">
@@ -36,9 +34,7 @@ export function UserDetail({ userId }: { userId: string }) {
 
               <UserPixandName
                 name={`${user.first_name} ${user.last_name}`}
-                initials={getInitialsFrom(
-                  `${user.first_name} ${user.last_name}`
-                )}
+                initials={getInitialsFrom(`${user.first_name} ${user.last_name}`)}
                 img=""
               />
 
@@ -46,10 +42,7 @@ export function UserDetail({ userId }: { userId: string }) {
                 <div className="space-y-1">
                   <h3 className="text-zinc-400 text-sm">Wallet balance</h3>
                   <h1 className="font-medium text-zinc-700">
-                    {localCurrencyFormater(
-                      wallet?.available_balance ?? 0,
-                      "NGN"
-                    )}
+                    {localCurrencyFormater(wallet?.available_balance ?? 0, "NGN")}
                   </h1>
                 </div>
 
@@ -65,24 +58,16 @@ export function UserDetail({ userId }: { userId: string }) {
 
                 <div className="space-y-1">
                   <h3 className="text-zinc-400 text-sm">Last Log In</h3>
-                  <h1 className="font-medium text-zinc-700">
-                    05-08-2021 10:00AM
-                  </h1>
+                  <h1 className="font-medium text-zinc-700">05-08-2021 10:00AM</h1>
                 </div>
               </div>
             </div>
             <div className="flex--items space-x-5 mt-6">
-              <CustomButton
-                className="w-[150px] "
-                onClick={() => setBlockUser(true)}
-              >
+              <CustomButton className="w-[150px] " onClick={() => setBlockUser(true)}>
                 Block User
               </CustomButton>
 
-              <CustomButton
-                onClick={() => setBlockWallet(true)}
-                className="w-[150px] "
-              >
+              <CustomButton onClick={() => setBlockWallet(true)} className="w-[150px] ">
                 Block Wallet
               </CustomButton>
               <CustomButton
@@ -100,10 +85,7 @@ export function UserDetail({ userId }: { userId: string }) {
               isOpen={blockUser}
               showCloseButton={true}
             >
-              <BlockUserModal
-                userId={userId}
-                closeModal={() => setBlockUser(false)}
-              />
+              <BlockUserModal userId={userId} closeModal={() => setBlockUser(false)} />
             </CustomModal>
 
             <CustomModal
@@ -111,17 +93,10 @@ export function UserDetail({ userId }: { userId: string }) {
               isOpen={blockWallet}
               showCloseButton={true}
             >
-              <BlockWalletModal
-                userId={userId}
-                closeModal={() => setBlockWallet(false)}
-              />
+              <BlockWalletModal userId={userId} closeModal={() => setBlockWallet(false)} />
             </CustomModal>
 
-            <CustomModal
-              closeModal={() => setKYC(false)}
-              isOpen={kYC}
-              showCloseButton={true}
-            >
+            <CustomModal closeModal={() => setKYC(false)} isOpen={kYC} showCloseButton={true}>
               <PreviewKYCstatusModal />
             </CustomModal>
           </div>

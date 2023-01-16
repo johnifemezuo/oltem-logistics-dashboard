@@ -9,4 +9,3 @@ export * from "./TrxnLoading";
 export * from "./TxnLoadingSkeleton";
 export * from "./useBankDetails";
 export * from "./useWalletTransactions";
-export * from "./Wallet";

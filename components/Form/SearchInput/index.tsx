@@ -7,6 +7,7 @@ interface ISearchInput {
   showFilter?: boolean;
   value?: string;
   placeholder?: string;
+  calendarValue?: any;
 }
 
 export function SearchInput({
@@ -14,6 +15,7 @@ export function SearchInput({
   showFilter = true,
   value,
   placeholder = "Search...",
+  calendarValue
 }: ISearchInput) {
   return (
     <div className="mt-1  flex--items space-x-6 w-full">
@@ -27,7 +29,7 @@ export function SearchInput({
           className=" group-focus:border p-3 w-full outline-none bg-transparent  text-gray-800 "
         />
       </div>
-      {showFilter && <TxnFilter />}
+      {showFilter && <TxnFilter calendarValue={calendarValue} />}
     </div>
   );
 }

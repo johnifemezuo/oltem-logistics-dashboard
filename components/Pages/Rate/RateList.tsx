@@ -5,7 +5,7 @@ interface IRateList {
     date: string;
     amount: string | number
 }
-function RateList({name, time, date, amount}: IRateList) {
+export function RateList({name, time, date, amount}: IRateList) {
   return (
     <>
       <div className="flex--items justify-between px-4 py-4">
@@ -25,5 +25,3 @@ function RateList({name, time, date, amount}: IRateList) {
     </>
   );
 }
-
-export default RateList
