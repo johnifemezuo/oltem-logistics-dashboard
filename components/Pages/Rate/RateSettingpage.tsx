@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   localCurrencyFormater,
   localDateFormater,
@@ -33,9 +33,13 @@ export function RateSettingPage() {
     isSettlement,
   });
 
+  const provider = useMemo(
+    () => providers.find((provider) => provider.id === selected),
+    [selected]
+  );
+
   useEffect(() => {
     if (selected) {
-      const provider = providers.find((provider) => provider.id === selected);
       if (provider) {
         setSuspended(provider.is_suspended);
         setIsSettlement(provider.includes_settlement);
@@ -53,17 +57,20 @@ export function RateSettingPage() {
             </h2>
             <div className="space-y-5 mt-4">
               <form onSubmit={updateProviders}>
+                <div className="mb-2">
+                  <DropdownSelect
+                    options={providers}
+                    selected={selected}
+                    setSelected={setSelected}
+                    title="Select provider"
+                  />
+                </div>
                 <CustomInput
                   label="Rate amount"
                   placeholder="Rate amount"
                   type="text"
                   register={register("rate")}
-                />
-                <DropdownSelect
-                  options={providers}
-                  selected={selected}
-                  setSelected={setSelected}
-                  title="Select provider"
+                  value={provider?.rate as any}
                 />
 
                 <p className="pt-4 pb-1 text-gray-700">
