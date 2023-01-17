@@ -2,8 +2,9 @@ import { FC, ReactNode, useEffect, useState } from "react";
 import {
   getInitialsFrom,
   IUser,
+  useAuth,
   useAuthProvider,
-  useTransaction,
+  useTransaction
 } from "../../base";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
@@ -16,12 +17,13 @@ interface IDashboardLayout {
 
 export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
   const { user: session } = useAuthProvider();
+  const { session: session2 } = useAuth();
   const { transaction, openTxnModal } = useTransaction();
   const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
-    if (session?.user) {
-      setUser(session.user);
+    if (session2?.user) {
+      setUser(session2.user);
     }
   }, [session]);
 
@@ -48,7 +50,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
                     initials={getInitialsFrom(
                       `${user?.first_name} ${user?.last_name}`
                     )}
-                    userName={user?.first_name + " " + session?.user?.last_name}
+                    userName={user?.first_name + " " + user?.last_name}
                     email={user?.email}
                   />
                 </div>

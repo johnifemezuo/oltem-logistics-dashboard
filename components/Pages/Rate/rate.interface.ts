@@ -8,3 +8,11 @@ export interface IProviderRateHistory extends IBase {
   is_suspended: boolean;
   includes_settlement: boolean;
 }
+
+export interface IProvider extends IBase {
+  name: string;
+  rate: number;
+  slug: string;
+  includes_settlement: boolean;
+  is_suspended: boolean;
+}

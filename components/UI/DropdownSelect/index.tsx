@@ -3,19 +3,31 @@ import { Fragment } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 interface IDropdownSelect {
-    selected: any;
-    options: any[];
-    setSelected: any;
+  selected: any;
+  options: any[];
+  setSelected: any;
+  title?: string;
 }
 
-const DropdownSelect = ({selected, options, setSelected}: IDropdownSelect) => {
+const DropdownSelect = ({
+  selected,
+  options,
+  setSelected,
+  title,
+}: IDropdownSelect) => {
   return (
     <Listbox value={selected} onChange={setSelected}>
       <div className="relative mt-1">
         <Listbox.Button className="relative w-full rounded-md bg-white py-3 border hover:bg-zinc-100 transition cursor-pointer pl-3 pr-10 text-left ">
-          <span className="block truncate text-zinc-700">{selected || "Select Option"}</span>
+          <span className="block truncate text-zinc-700">
+            {options.find((option) => option.id === selected)?.name ||
+              (title ?? "Select Option")}
+          </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-            <RiArrowDownSLine className="h-5 w-5 text-gray-400" aria-hidden="true" />
+            <RiArrowDownSLine
+              className="h-5 w-5 text-gray-400"
+              aria-hidden="true"
+            />
           </span>
         </Listbox.Button>
         <Transition
@@ -33,11 +45,17 @@ const DropdownSelect = ({selected, options, setSelected}: IDropdownSelect) => {
                     active ? "bg-app-bg" : "text-zinc-700"
                   } ${selected?.id === reason?.id ? "bg-app-bg" : "bg-white"}`
                 }
-                value={reason.name}
+                value={reason.id}
               >
                 {({ selected }) => (
                   <>
-                    <span className={`block truncate ${selected ? "font-medium text-primary-color" : "font-normal text-zinc-500"}`}>
+                    <span
+                      className={`block truncate ${
+                        selected
+                          ? "font-medium text-primary-color"
+                          : "font-normal text-zinc-500"
+                      }`}
+                    >
                       {reason.name}
                     </span>
                   </>
