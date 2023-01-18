@@ -45,7 +45,6 @@ export function PasswordInput({
     placeholder:text-md 
     focus:outline-none 
     w-full py-3.5 px-4 transition duration-300
-    text-md
       
     ${
       disabled === true ? "bg-zinc-100 text-zinc-500" : "bg-white text-zinc-700"

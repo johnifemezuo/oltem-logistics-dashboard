@@ -28,21 +28,19 @@ export const useGetRequest = <TResponse extends Record<string, any>>({
   const query = useQuery<any, any, IRequestSucess<TResponse>>(
     [requestPath, {}],
     () =>
-      new Promise<IRequestSucess<TResponse> | IRequestError>(
-        async (res, rej) => {
-          setTimeout(async () => {
-            const postResponse = await makeRequest<TResponse>({
-              path: requestPath,
-              bearerToken: authToken,
-            });
-            if (postResponse?.status) {
-              res(postResponse as IRequestSucess<TResponse>);
-            } else {
-              rej(postResponse);
-            }
-          }, 200);
-        }
-      ),
+      new Promise<IRequestSucess<TResponse> | IRequestError>(async (res, rej) => {
+        setTimeout(async () => {
+          const postResponse = await makeRequest<TResponse>({
+            path: requestPath,
+            bearerToken: authToken,
+          });
+          if (postResponse?.status) {
+            res(postResponse as IRequestSucess<TResponse>);
+          } else {
+            rej(postResponse);
+          }
+        }, 200);
+      }),
     {
       enabled: load,
       ...options,
@@ -90,9 +88,7 @@ export const useGetRequest = <TResponse extends Record<string, any>>({
         pagination.previous_page !== pagination.current_page &&
         pagination.previous_page < pagination.current_page
       ) {
-        updatePath(
-          constructPaginationLink(requestPath, pagination.previous_page)
-        );
+        updatePath(constructPaginationLink(requestPath, pagination.previous_page));
       }
     }
   };

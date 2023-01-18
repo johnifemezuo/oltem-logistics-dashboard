@@ -9,7 +9,7 @@ export function LoginForm() {
     useLogin();
 
   return (
-    <div className="w-[450px]  h-auto">
+    <div className="w-[500px]  h-auto">
       <SignUpTitle title="Log in" desc="Welcome back, Sign in" />
 
       <div className=" text-center space-y-4">
