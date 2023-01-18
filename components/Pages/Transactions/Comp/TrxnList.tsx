@@ -91,7 +91,11 @@ export function TrxnList({ transaction }: { transaction: ITransaction }) {
           ? "-"
           : null}
         <CurrencyFormat
-          value={transaction.amount}
+          value={
+            type.name === "exchange"
+              ? transaction.recipient_amount
+              : transaction.amount
+          }
           displayType={"text"}
           thousandSeparator={true}
           suffix=".0"
@@ -108,4 +112,3 @@ export function TrxnList({ transaction }: { transaction: ITransaction }) {
     </TxnList>
   );
 }
-

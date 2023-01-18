@@ -25,12 +25,7 @@ export function UserDetail({ userId }: { userId: string }) {
 
   const { user, isLoading } = useUserDetails(userId);
 
-  const {
-    wallet,
-    isLoading: isWalletLoading,
-    isError,
-    isFetching,
-  } = useUserWallet(userId);
+  const { wallet, isLoading: isWalletLoading } = useUserWallet(userId);
 
   return (
     <>
@@ -50,7 +45,7 @@ export function UserDetail({ userId }: { userId: string }) {
                 img=""
               />
 
-              <div className="grid grid-cols-4">
+              <div className="grid grid-cols-5 justify-between">
                 <div className="space-y-1">
                   <h3 className="text-zinc-400 text-sm">Wallet balance</h3>
                   <h1 className="font-medium text-zinc-700">
@@ -61,7 +56,7 @@ export function UserDetail({ userId }: { userId: string }) {
                   </h1>
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-1 col-span-2">
                   <h3 className="text-zinc-400 text-sm">Email Address</h3>
                   <h1 className="font-medium text-zinc-700">{user.email}</h1>
                 </div>
@@ -86,7 +81,7 @@ export function UserDetail({ userId }: { userId: string }) {
                 className="w-[150px] "
                 onClick={() => setBlockUser(true)}
               >
-                Block User
+                {user.is_active ? "Block User" : "Un-block User"}
               </CustomButton>
 
               <CustomButton
@@ -112,6 +107,7 @@ export function UserDetail({ userId }: { userId: string }) {
             >
               <BlockUserModal
                 userId={userId}
+                isUserActive={user.is_active as boolean}
                 closeModal={() => setBlockUser(false)}
               />
             </CustomModal>
@@ -134,7 +130,10 @@ export function UserDetail({ userId }: { userId: string }) {
               isOpen={kYC}
               showCloseButton={true}
             >
-              <PreviewKYCstatusModal kycVerified={user.kyc_verified as boolean} kycs={user.kycs ?? ([] as IKyc[])} />
+              <PreviewKYCstatusModal
+                kycVerified={user.kyc_verified as boolean}
+                kycs={user.kycs ?? ([] as IKyc[])}
+              />
             </CustomModal>
           </div>
         </>

@@ -17,6 +17,6 @@ export interface IBeneficiary extends IBase {
   country?: ICountry;
 }
 
-export interface ICountry {
+export interface ICountry extends IBase{
   name: string;
 }

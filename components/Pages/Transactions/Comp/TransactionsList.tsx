@@ -59,8 +59,6 @@ export function TransactionsList({
                     {" "}
                     Preview{" "}
                   </button>
-                  {/* <button className={paginationBtn}> 1 </button>
-                  <button className={paginationBtn}> 2 </button> */}
                   <button className={paginationBtn} onClick={nextPage}>
                     {" "}
                     Next{" "}

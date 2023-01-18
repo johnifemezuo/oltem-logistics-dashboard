@@ -35,7 +35,6 @@ export function UserTableRow({
       <td className="px-6 py-4 font-medium text-zinc-600">{customer_name}</td>
       <td className="px-6 py-4 font-medium text-zinc-600">{email_address}</td>
       <td className="px-6 py-4 font-medium text-zinc-600">{phone_number}</td>
-      <td className="px-6 py-4 font-medium text-zinc-600">{wallet_balance}</td>
       <td className="px-6 py-4 font-medium text-zinc-600">
         <span
           className={`px-4 rounded-md py-1.5 text-sm grid text-center  text-zinc-600 ${

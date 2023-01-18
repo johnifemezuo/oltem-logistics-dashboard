@@ -16,9 +16,6 @@ export const UserTableHead = () => {
           Phone Number
         </th>
         <th scope="col" className="px-6 py-3 font-normal text-zinc-500">
-          Wallet Balance
-        </th>
-        <th scope="col" className="px-6 py-3 font-normal text-zinc-500">
           KYC Status
         </th>
         {/* <th scope="col" className="pl-6 pr-12 py-3 font-normal text-zinc-500">

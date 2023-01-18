@@ -1,6 +1,7 @@
-import { IBeneficiary, IPagination } from "../../../../base";
+import { IBase, IBeneficiary, IPagination } from "../../../../base";
+import { IProvider } from "../../Rate";
 
-export interface ITransaction {
+export interface ITransaction extends IBase {
   id: string;
   trxn_id: string;
   user_id: string;
@@ -22,6 +23,7 @@ export interface ITransaction {
   transactionStatus: ITransactionStatus;
   currency: ICurrency;
   beneficiary: IBeneficiary;
+  derivedPrice: IDerivedPrice;
 }
 
 export interface ITransactionData {
@@ -58,11 +60,26 @@ export interface ICurrency {
   updated_at: string;
 }
 
-
 export interface TransactionQuery {
   type?: string;
   status?: string;
   userId?: string;
   page?: number;
   size?: number;
+}
+
+export interface IDerivedPrice extends IBase {
+  derived_amount: number;
+  request_amount: number;
+  from_currency_id: string;
+  to_currency_id: string;
+  buy_currency_id: string;
+  type: string;
+  wallet_funding_charge_ngn: number;
+  zigah_rate: number;
+  zigah_charge: number;
+  zigah_percentage: number;
+  zigah_profit: number;
+  provider_id: string;
+  provider: IProvider;
 }

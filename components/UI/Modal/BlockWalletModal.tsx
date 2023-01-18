@@ -4,16 +4,19 @@ import { CustomButton } from "../../Form";
 import DropdownSelect from "../DropdownSelect";
 import { useUserWalletManagement } from "./useUserWalletManagement";
 
-const people: { name: string; id: number }[] = [
+const people: { name: string; id: string }[] = [
   {
     name: "I expect he is hacker",
-    id: 0,
+    id: "04f046c8-62f8-4315-8d31-a47fe40cdf46",
   },
   {
     name: "I dont trust the account",
-    id: 1,
+    id: "06d01dcd-c9d0-470b-8b67-4880f6602365",
   },
-  { name: "I just like to disable things", id: 2 },
+  {
+    name: "I just like to disable things",
+    id: "4df89db2-e1b0-4001-8659-4f67afb9699e",
+  },
 ];
 
 export function BlockWalletModal({

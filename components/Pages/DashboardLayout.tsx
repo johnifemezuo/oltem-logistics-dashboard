@@ -4,7 +4,7 @@ import {
   IUser,
   useAuth,
   useAuthProvider,
-  useTransaction
+  useTransaction,
 } from "../../base";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
@@ -64,7 +64,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
         </div>
       </div>
       <TransactionModal open={openTxnModal}>
-        <TransactionPreviewModal transaction={transaction} />
+        <TransactionPreviewModal transactionId={transaction.id} />
       </TransactionModal>
     </div>
   );
