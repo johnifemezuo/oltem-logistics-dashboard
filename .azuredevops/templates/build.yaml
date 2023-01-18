@@ -1,0 +1,62 @@
+stages:
+  - stage: Build
+    displayName: Build
+    jobs:
+    - job: DockerAndArtifactBuild
+      displayName: Build and Push Docker Image
+      pool:
+        inputs:
+          pollingTimeoutSec: '300'
+        vmImage: ubuntu-latest
+      steps:
+      - task: CmdLine@2
+        displayName: Create .env File and Inject environment variables
+        inputs:
+          script: |
+            touch .env
+
+            echo NEXT_PUBLIC_API_URL=$(API_BASE_URL) >> .env
+      - task: Docker@2
+        displayName: Build and push an image to container registry
+        inputs:
+          containerRegistry: 'zigah-acr'
+          repository: '$(Namespace)/$(Project.Name)'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
+          tags: '$(Tag)'
+      - task: PublishPipelineArtifact@1
+        displayName: Publish pipeline artifact
+        inputs:
+          targetPath: '$(Pipeline.Workspace)'
+          artifact: '$(Artifact.Name)'
+          publishLocation: 'pipeline'
+
+    - job: HelmChartPackage
+      displayName: Package and Push Helm Chart
+      pool:
+        inputs:
+          pollingTimeoutSec: '300'
+        vmImage: ubuntu-latest
+      steps:
+      - task: HelmInstaller@1
+        displayName: Install specific helm version
+        inputs:
+          helmVersionToInstall: '$(Helm.Version)'
+      - task: HelmDeploy@0
+        displayName: Package helm chart
+        inputs:
+          command: 'package'
+          chartPath: './chart'
+          chartVersion: '$(Chart.Version)'
+          save: false
+      - task: CmdLine@2
+        displayName: Push the packaged helm chart to azure container registry
+        inputs:
+          script: |
+            curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+            
+            helm registry login $ACR_NAME.azurecr.io \
+              --username $(ACR.Name) \
+              --password $(ACR.Password)
+            
+            helm push $(Build.ArtifactStagingDirectory)/$(Project.Name)-$(Chart.Version).tgz oci://$ACR_NAME.azurecr.io/helm

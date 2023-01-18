@@ -1,0 +1,31 @@
+nameOverride: ""
+fullNameOverride: ""
+serviceAccount:
+  name: ""
+  create: false
+
+app:
+  name: "admin-dashboard"
+  env: staging
+
+  secret:
+    name: admin-dashboard-secrets
+
+  labels:
+    tier: frontend
+    role: dashboard
+
+  volume:
+    secret:
+      name: "secret-volume"
+
+  image:
+    registry: "zigah.azurecr.io"
+    repository: "admin-dashboard"
+    nameSpace: staging
+    tag: latest
+
+  container:
+    port: 9331
+    portName: container-port
+  replicas: 1

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "admin-dashboard.name" . }}
+  labels:
+    {{- include "admin-dashboard.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.app.replicas }}
+  selector:
+    matchLabels:
+      app: {{ include "admin-dashboard.name" . }}
+  template:
+    metadata:
+      labels:
+        {{- include "admin-dashboard.labels" . | nindent 8 }}
+    spec:
+      containers:
+      -  name: {{ .Values.app.image.repository | quote }}
+         image: {{ printf "%s/%s/%s:%d" .Values.app.image.registry .Values.app.image.nameSpace .Values.app.image.repository .Values.app.image.tag }}
+         ports:
+         -  name: {{ .Values.app.container.portName }}
+            containerPort: {{ .Values.app.container.port }}
