@@ -57,7 +57,7 @@ export function TransactionsList({
                 <div className="bg-white space-x-2 py-4 flex place-content-center">
                   <button className={paginationBtn} onClick={prevPage}>
                     {" "}
-                    Preview{" "}
+                    Prev{" "}
                   </button>
                   <button className={paginationBtn} onClick={nextPage}>
                     {" "}

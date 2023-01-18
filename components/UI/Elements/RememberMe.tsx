@@ -9,7 +9,7 @@ export function RememberMe() {
           id="link-checkbox"
           type="checkbox"
           value=""
-          className="w-4 h-4 text-primary-color bg-gray-100 outline-none rounded border-gray-300 focus:ring-primary-color dark:focus:ring-primary-color  focus:ring-2 "
+          className="w-4 h-4 text-primary-color bg-gray-100 outline-none rounded border-gray-300 focus:ring-primary-color   focus:ring-2 "
         />
         <label htmlFor="link-checkbox" className="ml-2 text-sm">
           Remember me

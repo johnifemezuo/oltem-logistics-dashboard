@@ -62,9 +62,9 @@ export default function UserProfile({
             >
               <div
                 id="dropdownAvatar"
-                className=" z-10 w-60 bg-white rounded divide-y divide-gray-100 shadow-lg border dark:bg-gray-700 dark:divide-gray-600"
+                className=" z-10 w-60 bg-white rounded divide-y divide-gray-100 shadow-lg border"
               >
-                <div className="py-3 px-4 text-sm text-left text-gray-900 dark:text-white">
+                <div className="py-3 px-4 text-sm text-left text-gray-900">
                   <h4 className="text-zinc-600">{userName}</h4>
                   <div className="font-medium  truncate">{email}</div>
                 </div>
