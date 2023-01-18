@@ -2,11 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import {
   localCurrencyFormater,
   localDateFormater,
+  localDateFormaterLong,
   localTimeFormater,
 } from "../../../base";
+import { ReviewTxns } from "../../../styles/styles";
 import { CustomButton, CustomInput } from "../../Form";
 import { EmptyUI } from "../../UI";
 import DropdownSelect from "../../UI/DropdownSelect";
+import ReviewTxn from "../../UI/Elements/ReviewtTxn";
 import { RateList } from "./RateList";
 import { RateSettingLoading } from "./RateSettingLoading";
 import { useGetRateProviders } from "./useGetRateProviders";
@@ -48,14 +51,14 @@ export function RateSettingPage() {
   }, [selected]);
 
   return (
-    <div className="md:w-[800px] capitalize space-y-8 mx-auto py-16 h-auto w-full mb-16">
-      <div className="w-[500px]">
+    <div className="md:w-[1000px] capitalize space-y-8 mx-auto py-16 h-auto w-full mb-16">
+      <div className="w-[800px]">
         {isLoadingProviders || isLoading ? null : (
           <>
             <h2 className="text-xl font-semibold text-primaryText-color">
               Input Your rates
             </h2>
-            <div className="space-y-5 mt-4">
+            <div className="space-y-5 mt-4 grid grid-cols-2 space-x-4 content-start	">
               <form onSubmit={updateProviders}>
                 <div className="mb-2">
                   <DropdownSelect
@@ -118,6 +121,31 @@ export function RateSettingPage() {
                   Save
                 </CustomButton>
               </form>
+              <div className="px-4 py-2 rounded-lg shadow bg-blue-50">
+                <h1 className="py-1 mb-2 text-lg border-b">Providers rate</h1>
+                {providers.map((provider) => (
+                  <>
+                    <ReviewTxns>
+                      <ReviewTxn
+                        label="Provider name"
+                        detail={provider.name}
+                        customStyle="text-left"
+                        date={localDateFormaterLong(
+                          provider.updated_at as Date
+                        )}
+                        time={localTimeFormater(
+                          provider.updated_at as Date
+                        )}
+                      />
+                      <ReviewTxn
+                        label="Provider rate"
+                        detail={localCurrencyFormater(provider.rate, "NGN")}
+                        customStyle="text-left"
+                      />
+                    </ReviewTxns>
+                  </>
+                ))}
+              </div>
             </div>
           </>
         )}
@@ -126,7 +154,7 @@ export function RateSettingPage() {
       {isLoading ? (
         <RateSettingLoading />
       ) : (
-        <div className="pt-12 borer-t">
+        <div className="pt-12 borer-t w-[800px]">
           <h2 className="text-xl font-semibold text-primaryText-color">
             Rate History
           </h2>
