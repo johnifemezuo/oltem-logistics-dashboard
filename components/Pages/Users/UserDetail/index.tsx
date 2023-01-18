@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import {
   getInitialsFrom,
   localCurrencyFormater,
   localDateFormater,
+  Routes,
 } from "../../../../base";
 import { BackButton, CustomButton } from "../../../Form";
 import {
@@ -22,7 +24,7 @@ export function UserDetail({ userId }: { userId: string }) {
   const [blockUser, setBlockUser] = useState<boolean>(false);
   const [blockWallet, setBlockWallet] = useState<boolean>(false);
   const [kYC, setKYC] = useState<boolean>(false);
-
+  const { push } = useRouter()
   const { user, isLoading } = useUserDetails(userId);
 
   const { wallet, isLoading: isWalletLoading } = useUserWallet(userId);
@@ -39,9 +41,7 @@ export function UserDetail({ userId }: { userId: string }) {
 
               <UserPixandName
                 name={`${user.first_name} ${user.last_name}`}
-                initials={getInitialsFrom(
-                  `${user.first_name} ${user.last_name}`
-                )}
+                initials={getInitialsFrom(`${user.first_name} ${user.last_name}`)}
                 img=""
               />
 
@@ -49,10 +49,7 @@ export function UserDetail({ userId }: { userId: string }) {
                 <div className="space-y-1">
                   <h3 className="text-zinc-400 text-sm">Wallet balance</h3>
                   <h1 className="font-medium text-zinc-700">
-                    {localCurrencyFormater(
-                      wallet?.available_balance ?? 0,
-                      "NGN"
-                    )}
+                    {localCurrencyFormater(wallet?.available_balance ?? 0, "NGN")}
                   </h1>
                 </div>
 
@@ -69,25 +66,17 @@ export function UserDetail({ userId }: { userId: string }) {
                 <div className="space-y-1">
                   <h3 className="text-zinc-400 text-sm">Last Log In</h3>
                   <h1 className="font-medium text-zinc-700">
-                    {localDateFormater(
-                      user.last_login?.updated_at || new Date()
-                    )}
+                    {localDateFormater(user.last_login?.updated_at || new Date())}
                   </h1>
                 </div>
               </div>
             </div>
             <div className="flex--items space-x-5 mt-6">
-              <CustomButton
-                className="w-[150px] "
-                onClick={() => setBlockUser(true)}
-              >
+              <CustomButton className="w-[150px] " onClick={() => setBlockUser(true)}>
                 {user.is_active ? "Block User" : "Un-block User"}
               </CustomButton>
 
-              <CustomButton
-                onClick={() => setBlockWallet(true)}
-                className="min-[150px] "
-              >
+              <CustomButton onClick={() => setBlockWallet(true)} className="min-[150px] ">
                 {wallet.is_active ? "Block Wallet" : "Un-block Wallet"}
               </CustomButton>
               <CustomButton
@@ -95,6 +84,12 @@ export function UserDetail({ userId }: { userId: string }) {
                 bg_color="w-[150px] border bg-zinc-100 text-primary-color"
               >
                 KYC Status
+              </CustomButton>
+              <CustomButton
+                onClick={() => push("/dashboard/user/434/loginHistory")}
+                bg_color="w-[150px] border bg-zinc-100 text-primary-color"
+              >
+                Login History
               </CustomButton>
             </div>
 
@@ -125,11 +120,7 @@ export function UserDetail({ userId }: { userId: string }) {
               />
             </CustomModal>
 
-            <CustomModal
-              closeModal={() => setKYC(false)}
-              isOpen={kYC}
-              showCloseButton={true}
-            >
+            <CustomModal closeModal={() => setKYC(false)} isOpen={kYC} showCloseButton={true}>
               <PreviewKYCstatusModal
                 kycVerified={user.kyc_verified as boolean}
                 kycs={user.kycs ?? ([] as IKyc[])}

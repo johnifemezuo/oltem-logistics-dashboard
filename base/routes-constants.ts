@@ -5,4 +5,5 @@ export const Routes = {
   transactions: "/dashboard/transactions",
   users: "/dashboard/users",
   rates: "/dashboard/rates",
+  loginHistory: "/user/login-history"
 };

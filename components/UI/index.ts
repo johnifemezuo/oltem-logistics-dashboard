@@ -1,5 +1,6 @@
 export * from "./BalanceDisplay";
 export * from "./DashboardAmountDisplay";
+export * from "./DropdownSelect";
 export * from "./Elements";
 export * from "./EmptyUI";
 export * from "./Modal";

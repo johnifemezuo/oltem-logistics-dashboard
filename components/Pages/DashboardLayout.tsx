@@ -6,9 +6,12 @@ import {
   useAuthProvider,
   useTransaction,
 } from "../../base";
+import { useLoginHistoryStore } from "../../base/hooks/stores/auth/useLoginHistory";
 import { NavigationBar } from "../NavigationBar/NavigationBar";
 import Notification from "../Notification";
 import { TransactionModal, TransactionPreviewModal } from "../UI";
+import { LoginHistoryModal } from "../UI/Modal/LoginHistoryModal";
+import { LoginHistoryPreviewModal } from "../UI/Modal/LoginHistoryPreviewModal";
 import UserProfile from "../UI/UserProfile";
 
 interface IDashboardLayout {
@@ -19,6 +22,8 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
   const { user: session } = useAuthProvider();
   const { session: session2 } = useAuth();
   const { transaction, openTxnModal } = useTransaction();
+  const { openLHistory } = useLoginHistoryStore();
+
   const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
@@ -37,9 +42,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
         <div className="w-fu">
           <div className="bg-app-bg fixed top-0 right-0 z-10 w-[84%] py-6 px-12">
             <div className="text-center ">
-              <h2 className="text-lg font-semibold text-primary-color -ml-[20%]">
-                {"Dashboard"}
-              </h2>
+              <h2 className="text-lg font-semibold text-primary-color -ml-[20%]">{"Dashboard"}</h2>
 
               <div className="absolute flex--items space-x-8 text-base right-8 top-5 ">
                 <Notification />
@@ -47,9 +50,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
                 <div>
                   <UserProfile
                     userImg={user?.profile_pics as string}
-                    initials={getInitialsFrom(
-                      `${user?.first_name} ${user?.last_name}`
-                    )}
+                    initials={getInitialsFrom(`${user?.first_name} ${user?.last_name}`)}
                     userName={user?.first_name + " " + user?.last_name}
                     email={user?.email}
                   />
@@ -66,6 +67,10 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
       <TransactionModal open={openTxnModal}>
         <TransactionPreviewModal transactionId={transaction.id} />
       </TransactionModal>
+
+      <LoginHistoryModal open={openLHistory}>
+        <LoginHistoryPreviewModal />
+      </LoginHistoryModal>
     </div>
   );
 };
