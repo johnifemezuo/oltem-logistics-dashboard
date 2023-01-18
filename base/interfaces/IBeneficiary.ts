@@ -1,4 +1,5 @@
 import { IBase } from "../base.interface";
+import { ICountry } from "./ICountry";
 
 export interface IBeneficiary extends IBase {
   user_id: string;
@@ -15,8 +16,4 @@ export interface IBeneficiary extends IBase {
   is_saved: boolean;
   deleted_at?: Date;
   country?: ICountry;
-}
-
-export interface ICountry extends IBase{
-  name: string;
 }

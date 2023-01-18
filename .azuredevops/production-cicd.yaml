@@ -1,0 +1,11 @@
+trigger:
+  - main
+
+variables:
+  - group: pipeline-vars
+  - template: templates/var.yaml
+  - template: templates/production-var.yaml
+
+stages:
+  - template: templates/build.yaml
+  - template: templates/deployment.yaml

@@ -1,0 +1,44 @@
+stages:
+  - stage: Deploy
+    displayName: Deployment
+    jobs:
+    - deployment:
+      displayName: Deploy to an environment
+      pool:
+        vmImage: 'ubuntu-latest'
+      environment: '$(Namespace).$(Namespace)'
+      strategy:
+          runOnce:
+            deploy:
+              steps:
+              - checkout: none
+
+              - task: HelmInstaller@1
+                displayName: 'Install Helm'
+                inputs:
+                  helmVersionToInstall: '$(Helm.Version)'
+              - task: CmdLine@2
+                displayName: Deploy with Helm V3
+                inputs:
+                  script: |
+                    # install azure-cli
+                    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                    
+                    # download and install kubectl
+                    sudo  az aks install-cli
+
+                    # authenticate kubectl to access the kubernetes cluster
+                    az login --service-principal -u $(Principal.App.Id) -p $(Principal.Password) --tenant $(Principal.Tenant)
+                    az aks get-credentials --resource-group zigah-rg --name zigah-cluster --admin
+
+                    # authenticate helm to acr
+                    helm registry login $ACR_NAME.azurecr.io \
+                      --username $(ACR.Name) \
+                      --password $(ACR.Password)
+
+                    # deploy app to kubernetes cluster
+                    helm upgrade --install $(Project.Name) \
+                      oci://$ACR_NAME.azurecr.io/helm/$(Project.Name) \
+                      --version $(Chart.Version) \
+                      --namespace $(Namespace) \
+                      --set app.env=$(Namespace),app.image.nameSpace=$(Namespace),app.image.tag=$(Tag)

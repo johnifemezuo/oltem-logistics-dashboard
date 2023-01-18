@@ -4,7 +4,7 @@ import React from "react";
 import { RiAddFill, RiSendPlaneFill } from "react-icons/ri";
 import { CustomButton } from "../../Form";
 import useBankDetails from "../../Pages/Transactions/Comp/useBankDetails";
-import BalanceDisplay from "../BalanceDisplay";
+import { BalanceDisplay } from "../BalanceDisplay";
 
 
 function DashboardAmountDisplay() {

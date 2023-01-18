@@ -27,8 +27,8 @@ export function UserTableRow({
   return (
     <tr
       onClick={() => push(`/dashboard/users/${userId}`)}
-      className="bg-white transition cursor-pointer hover:bg-blue-50/30 border-b dark:bg-gray-800  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-    >
+      className="bg-white transition cursor-pointer hover:bg-blue-50/30 border-b hover:bg-gray-50"
+    > 
       <th scope="row" className="pl-12 pr-8 py-4 font-medium text-zinc-600 ">
         {num}
       </th>
