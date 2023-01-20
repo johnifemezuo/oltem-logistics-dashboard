@@ -38,7 +38,7 @@ export function LoginForm() {
           <RememberMe />
 
           <CustomButton
-            className="w-full"
+            className="w-full bg-primary-colorTwo"
             type="submit"
             isLoading={isLoading}
             disabled={isLoading}

@@ -16,6 +16,7 @@ export const createCategoryValidatorSchema: ValidationSchema = yup.object({
 
 export const useLogin = () => {
   const resolver = useYupValidationResolver(loginValidator);
+  
   const [serverError, setServerError] = useState<string>("");
   const {
     register,

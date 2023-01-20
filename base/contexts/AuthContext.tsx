@@ -20,11 +20,11 @@ export function AuthContext({ children }: { children: ReactNode }) {
   useEffect(() => {
     // check if route is dashboard
     if (route.startsWith("/dashboard")) {
-      if (!authToken || !user) {
+      if (authToken || user) {
         logout();
         push("/");
       }
-    } else if (authToken && user && route === "/") {
+    } else if (!authToken && !user && route === "/") {
       push("/dashboard");
     }
   }, [route, authToken, user]);

@@ -34,13 +34,13 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
 
   return (
     <div>
-      <div className="w-full relative h-screen bg-app-bg flex">
-        <div className="w-[16%] bg-app-bg fixed bottom-0 left-0 h-screen">
+      <div className="w-full relative h-screen bg-white flex">
+        <div className="w-[16%] bg-white fixed bottom-0 left-0 h-screen border-r">
           <NavigationBar />
         </div>
 
         <div className="w-fu">
-          <div className="bg-app-bg fixed top-0 right-0 z-10 w-[84%] py-6 px-12">
+          <div className="border-b bg-white fixed top-0 right-0 z-10 w-[84%] py-6 px-12">
             <div className="text-center ">
               <h2 className="text-lg font-semibold text-primary-color -ml-[20%]">{"Dashboard"}</h2>
 
@@ -59,7 +59,7 @@ export const DashboardLayout: FC<IDashboardLayout> = ({ children }) => {
             </div>
           </div>
 
-          <div className="h-full rounded-tl-2xl drop-shadow-none fixed bottom-0 right-0 top-[8.5%] w-[84%]  overflow-y-auto bg-white">
+          <div className="h-full rounded-tl-2xl drop-shadow-none fixed bottom-0 right-0 top-[8.5%] w-[84%]  overflow-y-auto bg-gray-100/50">
             {children}
           </div>
         </div>
